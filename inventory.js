@@ -2,7 +2,7 @@ var backpack =
 [
 	{
 		passive: 1,
-		description: "a small dagger that fits the hand. Easy to conceal",
+		description: "a small dagger that fits the hand. Easy to conceal.",
 		showName: "steel dagger",
 		name: "sword1",
 		count: 0,
@@ -98,7 +98,7 @@ var backpack =
 	},
 	{
 		passive: 1,
-		description: "",
+		description: "a tunic made from leather. It's basic wear of people from the plain.",
 		showName: "leather tunic",
 		name: "armor1",
 		count: 0,
@@ -119,7 +119,7 @@ var backpack =
 	},
 	{
 		passive: 1,
-		description: "",
+		description: "chain mail made from iron links. This item saves soldier's life countless times.",
 		showName: "iron chain mail",
 		name: "armor2",
 		count: 0,
@@ -140,7 +140,7 @@ var backpack =
 	},
 	{
 		passive: 1,
-		description: "",
+		description: "chain mail made from steel links. Steel is stronger than iron; this item is the definition of innovation.",
 		showName: "steel chain mail",
 		name: "armor3",
 		count: 0,
@@ -161,7 +161,7 @@ var backpack =
 	},
 	{
 		passive: 1,
-		description: "",
+		description: "plate mail made from sheet of refined steel. It stops even the heaviest blows.",
 		showName: "plate mail",
 		name: "armor4",
 		count: 0,
@@ -182,7 +182,7 @@ var backpack =
 	},
 	{
 		passive: 1,
-		description: "",
+		description: "plate mail made from scales of dragon. It withstands assault as well as it can withstand fire.",
 		showName: "dragon-scale plate mail",
 		name: "armor5",
 		count: 0,
@@ -203,7 +203,7 @@ var backpack =
 	},
 	{
 		passive: 1,
-		description: "",
+		description: "the legendary plate mail. It's crimson in color and is rumored to have been used by heroes from faraway land.",
 		showName: "legendary plate mail",
 		name: "legendArmor",
 		count: 0,
@@ -224,7 +224,7 @@ var backpack =
 	},
 	{
 		passive: 0,
-		description: "",
+		description: "a small bottle of pain killer.",
 		showName: "small potion",
 		name: "potion1",
 		count: 0,
@@ -239,7 +239,7 @@ var backpack =
 	},
 	{
 		passive: 0,
-		description: "",
+		description: "a large bottle of some strange green liquid. Made from secluded wizards lived in mountain top. It glows.",
 		showName: "large potion",
 		name: "potion2",
 		count: 0,
@@ -254,7 +254,7 @@ var backpack =
 	},
 	{
 		passive: 0,
-		description: "",
+		description: "steel-headed arrow.",
 		showName: "arrow",
 		name: "arrow",
 		count: 0,
@@ -266,7 +266,7 @@ var backpack =
 	},
 	{
 		passive: 0,
-		description: "",
+		description: "a well designed torch: stick, drag, and oil.",
 		showName: "torch",
 		name: "torch",
 		count: 0,
@@ -278,7 +278,7 @@ var backpack =
 	},
 	{
 		passive: 0,
-		description: "",
+		description: "an explosive device. Made from tinkers and mechanics of the kingdoms.",
 		showName: "bomb",
 		name: "bomb",
 		count: 0,
@@ -291,7 +291,7 @@ var backpack =
 	},
 	{
 		passive: 0,
-		description: "",
+		description: "an explosive stick that fires tethered hook. Is useful to travel through uncrossable path.",
 		showName: "grappling hook",
 		name: "grapplingHook",
 		count: 0,
@@ -303,7 +303,7 @@ var backpack =
 	},
 	{
 		passive: 0,
-		description: "",
+		description: "a cloak that is made to imitate dragon skins and scales. Resist against fire very well.",
 		showName: "fire-resistant cloak",
 		name: "fireResistantCloak",
 		count: 0,
@@ -315,7 +315,7 @@ var backpack =
 	},
 	{
 		passive: 0,
-		description: "",
+		description: "a poorman's shield. Good for one-time use.",
 		showName: "shield",
 		name: "shield",
 		count: 0,
@@ -343,7 +343,7 @@ var backpack =
 	},
 	{
 		passive: 0,
-		description: "",
+		description: "spring-attached boots. Jump higher, run faster.",
 		showName: "spring-loaded boots",
 		name: "springLoadedBoots",
 		count: 0,
@@ -355,35 +355,35 @@ var backpack =
 	},
 	{
 		passive: 0,
-		description: "",
+		description: "goggles that allows wearer to see the unseeable. Futuristic technology this one.",
 		showName: "heat goggles",
 		name: "heatGoggles",
 		count: 0
 	},
 	{
 		passive: 0,
-		description: "",
+		description: "why do you walk when you can just fly?",
 		showName: "flight magic",
 		name: "flightSpell",
 		count: 0
 	},
 	{
 		passive: 0,
-		description: "",
+		description: "create water out of thin air. Good for travelling through desert or against fire in general.",
 		showName: "water magic",
 		name: "waterSpell",
 		count: 0
 	},
 	{
 		passive: 0,
-		description: "",
+		description: "create a small flame out of nothing. Can be used to illuminate darkness, or make camp fire.",
 		showName: "fire magic",
 		name: "fireSpell",
 		count: 0
 	},
 	{
 		passive: 0,
-		description: "",
+		description: "cloak that hides wearer from eyesight but has terrible quality. It can be torn from first use.",
 		showName: "invisible cloak",
 		name: "invisibleCloak",
 		count: 0,
@@ -395,7 +395,7 @@ var backpack =
 	},
 	{
 		passive: 0,
-		description: "",
+		description: "enchanted pair of giant bird wings that allows wearer to fly. Many giant birds are killed to mass product these.",
 		showName: "animated wings",
 		name: "animatedWings",
 		count: 0,
@@ -407,7 +407,7 @@ var backpack =
 	},
 	{
 		passive: 1,
-		description: "",
+		description: "also called talisman of evasion. It allows wearer to be more agile and flexible.",
 		showName: "trinket of evasion",
 		name: "evasionTrinket",
 		count: 0,
@@ -423,7 +423,7 @@ var backpack =
 	},
 	{
 		passive: 1,
-		description: "",
+		description: "wielders of this item feels the surge of power through their body.",
 		showName: "trinket of assault",
 		name: "damageTrinket",
 		count: 0,
@@ -441,8 +441,8 @@ var backpack =
 	},
 	{
 		passive: 0,
-		description: "",
-		showName: "mastertrinket of trickery",
+		description: "no deception can pass through the gem-eye of this powerful necklace. Reveal even the tiniest of tricks.",
+		showName: "master trinket of trickery",
 		name: "trapRevealingTrinket",
 		count: 0
 	}
@@ -467,4 +467,9 @@ function calculateStat()
 			backpack[i].execute();
 		}
 	}
+
+	if(HP < currentHP)
+		HP = currentHP;
+	if(HP > maxHP)
+		HP = maxHP;
 }
