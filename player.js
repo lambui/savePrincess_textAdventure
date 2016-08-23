@@ -1,9 +1,9 @@
 var name;
 
 //default starting stat
-var const d_maxHP = 10;
-var const d_evasion = 10;
-var const d_dmg = 5;
+var d_maxHP = 10;
+var d_evasion = 10;
+var d_dmg = 5;
 
 var maxHP;
 var HP;
