@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sample Text</title>
+	<meta charset="UTF-8">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="map.js"></script>
+	<script src="player.js"></script>
+	<script src="init.js"></script>
+</head>
+<body>
+	<h1> castle </h1>
+	<textarea id="outputInfo" type="text" class="outputField" readonly="readonly" rows="25" cols="70"></textarea>
+	<textarea id="output" type="text" class="outputField" readonly="readonly" rows="25" cols="20"></textarea>
+	<div class="navigation">
+		<button onClick="goInDirection(1)">Go Up</button><br>
+		<button onClick="goInDirection(0)">Go Left</button>
+		<button onClick="goInDirection(2)">Go Right</button><br>
+		<button onClick="goInDirection(3)">Go Down</button>
+	</div>
+</body>
+</html>
