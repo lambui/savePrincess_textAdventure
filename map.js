@@ -1,44 +1,12 @@
-/**
- * Returns a random integer between min (inclusive) and max (inclusive)
- * Using Math.round() will give you a non-uniform distribution!
- */
-function getRandomInt(min, max) 
-{
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+
 class Empty
 {
 	constructor() {}
+	checkPlayer(){}
 	info()
 	{
-		var aString = "An seemingly empty room."
-		return aString;
-	}
-}
-
-class Shop
-{
-	//2 shop type: marchant == 0 and wizard == 1
-	constructor(shopType)
-	{
-		this.shopType = shopType;
-	}
-
-	info()
-	{
-		var aString = "";
-		if(this.shopType == 0) //merchant
-		{
-			aString += "Very much contrasting with everything you have seem so far in this omnious place, an enormous, colorful, and festive parade appears right before your eyes. ";
-			aString += "Colorful banners waving, trumpets playings, drums thumping, the entire scenery is bursting with life. All are originated from the huge wagon moving slowly across the room. ";
-			aString += "The wagon suddenly comes to a halt in front of you and a big man who cladded in colorful silk gracefully steps out. He smiles and suggests you to come see his wares.";
-		}
-		else //wizard
-		{
-			aString += "From one dark corner of the room, a thunderous voice suddenly calls out inquiring the identity of the intruder. ";
-			aString += "Within an eye blink, a man draped in ragged cloth suddenly appears in front of you, hands crackling with powerful arcane magic. ";
-			aString += "He levitates, towering over you, looking down onto you with light-filled eyes. The man then asks again: 'What business do you have here?'";
-		}
+		var aString = "A seemingly empty room."
+		aString += "\n";
 		return aString;
 	}
 }
@@ -50,9 +18,12 @@ class Chest
 		this.danger = danger; // 0 == real chest, 1 == mimic
 	}
 
+	checkPlayer(){}
+
 	info()
 	{
 		var aString = "In a middle of room, you spot a weakly illuminating chest."
+		aString += "\n";
 		return aString;
 	}
 }
@@ -60,6 +31,7 @@ class Chest
 class Riddle
 {
 	constructor() {}
+	checkPlayer(){}
 
 	info()
 	{
@@ -68,6 +40,7 @@ class Riddle
 		aString += "'Adventurer, do not make haste. For I will yield the way if you will answer correctly my riddle... Or punishment if you won't.' ";
 		aString += "It raises its large stone hand and slams hard against the stony floor behind you, blocking the retreating path. ";
 		aString += "'Now, let's start.' The statue begins slowly.";
+		aString += "\n";
 		return aString;
 	}
 }
@@ -88,6 +61,7 @@ class Gamble
 		this.dark = dark;
 		this.gameType = gameType;
 	}
+	checkPlayer(){}
 
 	info()
 	{
@@ -99,86 +73,7 @@ class Gamble
 		aString += "The shade gestures you forward. ";
 		if(this.dark == 1)
 			aString += "You have a bad feeling about this.";
-		return aString;
-	}
-}
-
-class Monster
-{
-	/*variables:
-		HP
-		dmg
-		attPrior
-		sleep
-		flying
-		evasion
-		alive
-	*/
-	constructor(hardness, sleep, flying)
-	{
-		var hardnessConstant = 50; //just because
-		this.HP = hardness*getRandomInt(5, 15);
-		this.evasion = hardness*getRandomInt(1,4);
-		this.dmg = Math.floor((hardnessConstant*hardness*hardness)/this.HP);
-		if(this.dmg > 15)
-			this.attPrior = 3;
-		else if(this.dmg > 8)
-			this.attPrior = 2;
-		else
-			this.attPrior = 1;
-		this.sleep = sleep;
-		this.flying = flying;
-		this.alive = true;
-	}
-
-	isDead()
-	{
-		this.alive = (HP > 0? true : false);
-		return this.alive;
-	}
-
-	info()
-	{
-		var aString = "monster room with " + this.HP + "HP and " + this.dmg + "dmg. It ";
-		aString += (this.flying == 0? "cannot " : "can ");
-		aString += "fly. It is currently ";
-		aString += (this.sleep == 0? "sleeping." : "awake.");
-		return aString;
-	}
-}
-
-class Trap
-{
-	/*trap type:
-		fire	0
-		arrow 	1
-		pike 	2
-		pitfall 3
-	*/
-	constructor(type, visible)
-	{
-		this.type = type;
-		this.visible = visible;
-	}
-
-	info()
-	{
-		var aString = "";
-		if(this.visible == 0)
-		{
-			return "An omnious room.";
-		}
-		
-		aString += "A dangerous room. It is filled with ";
-		switch(this.type)
-		{
-			default: break;
-			case 0: aString += "fire shooting out from all sides. The entire room is flooded with unbearable heat."; break;
-			case 1: aString += "arrow firing out from million holes in the wall. You can hear the constant 'wshhh' sound of arrows narrowly scraching your ears."; break;
-			case 2: aString += "sharp pikes protruding everywhere. The entire room looks like a densely packed mineral mines with deadly poles. You can see remnants of past adventurers in between."; break;
-			case 3: aString += "a enormous, unfathomable hole scretching across from wall to wall. From the depthless pit, you can hear the wailing of creatures who carelessly fell in from ages ago."; break;
-		}
-
+		aString += "\n";
 		return aString;
 	}
 }
@@ -197,6 +92,7 @@ class Room
 	{
 		this.main = input;
 		this.loadRoom();
+		navigationAction();
 	}
 
 	customRock(input)
@@ -326,12 +222,16 @@ for(var i = 0; i < map.length; i++)
 }
 
 //generate roomType
-for(var i = mapArray.length-1; i >= 0; i--)
+var indexCount = 0;
+var randomStart = getRandomInt(0, mapArray.length-1);
+while(indexCount < mapArray.length)
 {
+	var i = (randomStart + indexCount)%(mapArray.length);
 	if(i == 0)
 	{
 		mapArray[i].customRoomType(0);
-		roomTypeCounter[i] += 1;
+		roomTypeCounter[0] += 1;
+		indexCount += 1;
 		continue;
 	}
 
@@ -345,6 +245,8 @@ for(var i = mapArray.length-1; i >= 0; i--)
 			break;
 		}
 	}
+
+	indexCount += 1;
 }
 
 //this 2 will mark the current coordinate of the current room
@@ -363,19 +265,174 @@ map[posY][posX]
 */
 
 //navigation
+function navigationAction(enterDirection) //string enterDirection
+{
+	if(currentRoom == undefined)
+		return;
+
+	var canAdvance = 1; //path is not blocked
+	var canSleep = 1;  //cant sleep here
+	var canRun = 1; //can go back
+	var roomType = currentRoom.roomType();
+
+	currentRoom.roomContent.checkPlayer();
+	switch(roomType)
+	{
+		/*
+		empty 	10 	0
+		shop	5 	1
+		secret 	5 	2
+		chest 	10 	3
+		riddle 	10 	4
+		gamble 	10 	5
+		monster 34 	6
+		trap 	15 	7
+		boss 	1 	8
+		*/
+		default: break;
+		case 0:
+		case 1:
+		case 2:
+		case 3:
+			canAdvance = 1;
+			canSleep = 1;
+			canRun = 1;
+			break;
+		case 4:
+			canAdvance = 0;
+			canSleep = 0;
+			canRun = 0;
+			break;
+		case 5: //gamble
+			canAdvance = 0;
+			canSleep = 0;
+			canRun = 1;
+			break;
+		case 7: //trap
+			canAdvance = currentRoom.roomContent.canPass;
+			canSleep = 0;
+			canRun = 1;
+			break;
+		case 6:
+			if(currentRoom.roomContent.sleep == 1)
+			{
+				canAdvance = 1;
+				canRun = 1;
+			}
+			else
+			{
+				canAdvance = 0;
+				canRun = 0;
+			}
+			canSleep = 0;
+			break;
+		case 8:
+			canAdvance = 0;
+			canSleep = 0;
+			canRun = 0;
+			break;
+	}
+
+	enableNavigationButtons();
+	var navigationArray = $('.navigation').children();
+
+	if(canAdvance == 0) //block all the other advancing path
+	{
+		for(var i = 0; i < navigationArray.length; i++)
+			if(navigationArray[i].id != enterDirection)
+				navigationArray[i].disabled = true;
+	}
+
+	if(canSleep == 0) //disable sleep
+		navigationArray[navigationArray.length-1].disabled = true;
+
+	//mark retreat path
+	for(var i = 0; i < navigationArray.length; i++)
+	{
+		$(navigationArray[i]).removeClass('retreat');
+		if(navigationArray[i].id == enterDirection)
+			$(navigationArray[i]).addClass('retreat');
+	}
+
+	if(canRun == 0) //block retreat path
+		for(var i = 0; i < navigationArray.length; i++)
+			if(navigationArray[i].id == enterDirection)
+				navigationArray[i].disabled = true;
+
+	if(posX == 0)
+		$('#left')[0].disabled = true;
+	if(posX == column-1)
+		$('#right')[0].disabled = true;
+	if(posY == 0)
+		$('#down')[0].disabled = true;
+	if(posY == row-1)
+		$('#up')[0].disabled = true;
+
+	action(); //can be found in player.js
+}
+
+function updateNavigation()
+{
+	if(currentRoom == undefined)
+		return;
+	navigationAction($('.retreat')[0].id);
+}
+
+function disableNavigationButtons()
+{
+	$('#up')[0].disabled = true;
+	$('#down')[0].disabled = true;
+	$('#left')[0].disabled = true;
+	$('#right')[0].disabled = true;
+	$('#rest')[0].disabled = true;
+}
+
+function enableNavigationButtons()
+{
+	$('#up')[0].disabled = false;
+	$('#down')[0].disabled = false;
+	$('#left')[0].disabled = false;
+	$('#right')[0].disabled = false;
+	$('#rest')[0].disabled = false;
+}
+
 function goInDirection(direction) // 0 = left, 1 = up, 2 = right, 3 = down
 {
+	if(HP <= 0)
+	{
+		disableNavigationButtons();
+		return;
+	}
+
+	var navigationArray = $('.navigation').children();
+	if($(navigationArray[direction]).hasClass('retreat')==false)
+	{
+		if(currentRoom.roomType() == 7) //trap room
+		{
+			if(currentRoom.roomContent.action() == 0)
+			{
+				updateHeroInfo(); //can be found in player.js
+				goInDirection(direction);
+				return;
+			}
+		}
+	}
+
+	var enterDirection;
 	switch(direction)
 	{
-		case 0: goLeft(); break;
-		case 1: goUp(); break;
-		case 2: goRight(); break;
-		case 3: goDown(); break;
+		case 0: goLeft(); 	enterDirection = 'right'; break;
+		case 1: goUp(); 	enterDirection = 'down'; break;
+		case 2: goRight(); 	enterDirection = 'left'; break;
+		case 3: goDown(); 	enterDirection = 'up'; break;
 		default: break;
 	}
 	currentRoom = map[posY][posX];
+	currentRoom.roomContent.checkPlayer(); //check player special effects
 	drawMap();
 	showDescription();
+	navigationAction(enterDirection);
+	resetMordifier(); //can be found in player.js
 	console.log(currentRoom.roomType());
 }
 
@@ -487,7 +544,7 @@ function drawMap()
 			for(var j = 0; j < map[i].length; j++)
 			{
 				if(j == 0) //exit
-					draw += "|";
+					draw += "↑";
 				else
 					draw += "─";
 				if(j != map[i].length-1)
@@ -495,11 +552,18 @@ function drawMap()
 				else
 					draw += "┘";
 			}
-			draw += "\n v";
+			draw += "\n | C A S T L E  M A P\n\n";
+			draw += "   B: boss\n";
+			draw += "   C: chest\n";
+			draw += "   G: gamble\n";
+			draw += "   M: monster\n";
+			draw += "   R: riddle\n";
+			draw += "   S: shop\n";
+			draw += "   T: trap\n";
 		}
 	}
 
-	$("#output").text(draw);
+	$("#map").text(draw);
 	console.log(draw);
 }
 

@@ -1,0 +1,218 @@
+html, body
+{
+	background-color: white;
+	margin: 0;
+	border: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+*
+{
+	font-family: "Consolas";
+}
+
+.playerInfo
+{
+	position: absolute;
+	margin-left: 3%;
+	padding-right: 2%;
+	width: 20%;
+	height: 80%;
+	border-right: solid;
+}
+	.playerInfo #name
+	{
+		font-style: bold;
+		font-size: 1.5em;
+		margin-bottom: 10px;
+	}
+
+	.playerInfo div:nth-child(n+2) /*select all but the first (2)-1 child*/
+	{
+		
+	}
+
+	.playerInfo #passiveItem div
+	{
+		margin-left: 10%;
+	}
+
+.main
+{
+	position: absolute;
+	left: 30%;
+	width: 70%;
+	height: 60%;
+}
+
+/*all under .main below*/
+.action
+{
+	width: 80%;
+	height: 30%;
+	margin-bottom: 5%;
+}
+	.action button
+	{
+		float: left;
+		width: 10.5%;
+		height: 75px;
+		margin-top: 0;
+		margin-left: 1%;
+		margin-right: 1%;
+		margin-bottom: 5%;
+	}
+
+#map
+{
+	position: absolute;
+	left: 88%;
+}
+
+#outputInfo
+{
+	margin-left: 1%;
+	margin-right: 1%;
+	width: 78%;
+}
+
+.navigation
+{
+	background-color: white;
+	position: absolute;
+	margin-left: 1%;
+	margin-right: 1%;
+	width: 80%;
+	height: 40%;
+}
+
+.navigation button
+{
+	width: 12%;
+	height: 30%;
+}
+
+	#up
+	{
+		position: absolute;
+		top: 0;
+		left: 44%;
+	}
+
+	#down
+	{
+		position: absolute;
+		bottom: 0;
+		left: 44%;
+	}
+
+	#left
+	{
+		position: absolute;
+		left: 30%;
+		top: 35%;
+	}
+
+	#right
+	{
+		position: absolute;
+		right: 30%;
+		top: 35%;
+	}
+
+	#rest
+	{
+		position: absolute;
+		left: 44%;
+		top: 35%;
+	}
+
+.shop
+{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	visibility: hidden;
+}
+
+	.shop .inner
+	{
+		position: absolute;
+		width: 40%;
+		height: 80%;
+		left: 30%;
+		top: 10%;
+		border-style: solid;
+		border-radius: 10px;
+		padding: 5px;
+		background-color: white;
+	}
+
+	.shop .inner #name
+	{
+		float: left;
+		margin-top: -4.5%;
+		margin-left: 5%;
+		background-color: white;
+		border-radius: 5px;
+		font-size: 30px;
+		text-align: left;
+	}
+
+	.shop .inner #content
+	{
+		float: left;
+		width: 80%;
+		height: 85%;
+		margin-top: 5%;
+		margin-bottom: 5%;
+		margin-left: 10%;
+		margin-right: 10%;
+		overflow: auto;
+	}
+
+	#content .itemName
+	{
+		float: left;
+		margin-left: 5%;
+		margin-right: 1%;
+		margin-top: 1%;
+		margin-bottom: 1%;
+		width: 50%;
+		font-size: 15px;
+		text-align: left;
+	}
+
+	#content button
+	{
+		float: right;
+		width: 20%;
+	}
+
+	#content #sellingItem
+	{
+		float: left;
+		margin-left: 5%;
+		margin-right: 1%;
+		margin-top: 1%;
+		margin-bottom: 1%;
+		width: 85%;
+		font-size: 20px;
+		font-style: bold;
+		text-align: left;
+		border-bottom: solid;
+	}	
+
+	.shop .inner #exit
+	{
+		float: right;
+		height: 5%;
+		width: 20%;
+		margin-top: -3%;
+		margin-right: 2%;
+		border-radius: 5px;
+	}

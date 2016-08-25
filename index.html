@@ -4,19 +4,59 @@
 	<title>Sample Text</title>
 	<meta charset="UTF-8">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="header.js"></script>
+	<script src="shop.js"></script>
+	<script src="monster.js"></script>
+	<script src="trap.js"></script>
 	<script src="map.js"></script>
 	<script src="player.js"></script>
+	<script src="inventory.js"></script>
 	<script src="init.js"></script>
+	<link rel="stylesheet" type="text/css" href="styleSheet.css">
 </head>
 <body>
-	<h1> castle </h1>
-	<textarea id="outputInfo" type="text" class="outputField" readonly="readonly" rows="25" cols="70"></textarea>
-	<textarea id="output" type="text" class="outputField" readonly="readonly" rows="25" cols="20"></textarea>
-	<div class="navigation">
-		<button onClick="goInDirection(1)">Go Up</button><br>
-		<button onClick="goInDirection(0)">Go Left</button>
-		<button onClick="goInDirection(2)">Go Right</button><br>
-		<button onClick="goInDirection(3)">Go Down</button>
+	<h1> Rescue Princess </h1>
+	<div class='playerInfo'>
+		<div id="name">player name</div>
+		<div id="gold">gold here</div>
+		<div id="HP">10 / 10</div>
+		<div id="dmg">1</div>
+		<div id="evasion">10%</div>
+		<div id="passiveItem">Equipment:</div>
+	</div>
+	<div class="main">
+		<div class='action'>
+			<button id='inspect' onClick='inspect()'>Inspect the room.</button>
+			<button id='melee' onClick="melee()">Charge!!!</button>
+			<button id='openShop' onClick="openShop()">Talk</button>
+			<button id='jumpPit' onClick="jumpPit()">Jump!</button>
+			<button id='grapplingHook' onClick='useItem(this.id)'>Use grappling hook.</button>
+			<button id='fireResistantCloak' onClick='useItem(this.id)'>Put on fire-resistant cloak.</button>
+			<button id='shield' onClick='useItem(this.id)'>Held out shield.</button>
+			<button id='springLoadedBoots' onClick='useItem(this.id)'>Equip spring-loaded boots.</button>
+			<button id='flightSpell' onClick='useItem(this.id)'>Cast flight magic.</button>
+			<button id='waterSpell' onClick='useItem(this.id)'>Cast water magic.</button>
+			<button id='animatedWings' onClick='useItem(this.id)'>Wear animated wings.</button>
+		</div>
+		<textarea id="outputInfo" type="text" class="outputField" readonly="readonly" rows="15" cols="116"></textarea>
+		<div class="navigation" draggable="true">
+			<button id='left' onClick="goInDirection(0)">Go Left</button>
+			<button id='up' onClick="goInDirection(1)">Go Up</button>
+			<button id='right' onClick="goInDirection(2)">Go Right</button>
+			<button id='down' onClick="goInDirection(3)">Go Down</button>
+			<button id='rest' onClick="rest()">Rest!</button>
+		</div>
+	</div>
+	<textarea id="map" type="text" class="outputField" readonly="readonly" rows="32" cols="20"></textarea>
+	<div class="shop">
+		<div class='inner'>
+			<div id='name'>Shop</div>
+			<div id='content'>
+				<div class='itemName'>iron sword</div><button class='sellButton'>sell</button><button class='buyButton'>buy</button> <!-- sample -->
+				<div id="sellingItem">Backpack:</div>
+			</div>
+			<button id='exit' onClick="exitShop()">Exit.</button>
+		</div>
 	</div>
 </body>
 </html>
