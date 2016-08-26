@@ -32,19 +32,26 @@
 		<div class='action'>
 			<button id='inspect' onClick='inspect()'>Inspect the room.</button>
 			<button id='melee' onClick="melee()">Charge!!!</button>
+			<button id='arrow' onClick='shootArrow()'>Shoot arrow.</button>
+			<button id='bomb' onClick='useBomb()'>Throw explosive.</button>
 			<button id='openShop' onClick="openShop()">Talk</button>
 			<button id='openGamble' onClick='openGamble()'>Talk</button>
 			<button id='openChest' onClick='openChest()'>Open the chest.</button>
 			<button id='jumpPit' onClick="jumpPit()">Jump!</button>
+			<button id='potion1' onClick='useItem(this.id)'>Drink small potion.</button>
+			<button id='potion2' onClick='useItem(this.id)'>Drink large potion.</button>
 			<button id='grapplingHook' onClick='useItem(this.id)'>Use grappling hook.</button>
 			<button id='fireResistantCloak' onClick='useItem(this.id)'>Put on fire-resistant cloak.</button>
 			<button id='shield' onClick='useItem(this.id)'>Held out shield.</button>
 			<button id='springLoadedBoots' onClick='useItem(this.id)'>Equip spring-loaded boots.</button>
 			<button id='flightSpell' onClick='useItem(this.id)'>Cast flight magic.</button>
 			<button id='waterSpell' onClick='useItem(this.id)'>Cast water magic.</button>
+			<button id="invisibleCloak" onClick='useItem(this.id)'>Put on invisible cloak.</button>
 			<button id='animatedWings' onClick='useItem(this.id)'>Wear animated wings.</button>
 		</div>
-		<textarea id="outputInfo" type="text" class="outputField" readonly="readonly" rows="15" cols="116"></textarea>
+		<div class='outputWrapper'>
+			<textarea id="outputInfo" type="text" class="outputField" readonly="readonly" rows="15" cols="116"></textarea>
+		</div>
 		<div class="navigation" draggable="true">
 			<button id='left' onClick="goInDirection(0)">Go Left</button>
 			<button id='up' onClick="goInDirection(1)">Go Up</button>
@@ -62,6 +69,10 @@
 				<div id="sellingItem">Backpack:</div>
 			</div>
 			<button id='exit' onClick="exitShop()">Exit.</button>
+		</div>
+		<div class='info'>
+			<div id='name'>Info</div>
+			<textarea id="outputInfoShop" type="text" class="outputField" readonly="readonly"></textarea>
 		</div>
 	</div>
 	<div class="gambleTable">

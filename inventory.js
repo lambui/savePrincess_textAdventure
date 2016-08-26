@@ -279,7 +279,7 @@ var backpack =
 		itemType: 'consumable',
 		price: 100,
 		sellable: 1,
-		count: 0,
+		count: 5,
 		heal: 10,
 		execute()
 		{
@@ -298,7 +298,7 @@ var backpack =
 		itemType: 'consumable',
 		price: 100,
 		sellable: 1,
-		count: 0,
+		count: 5,
 		heal: 20,
 		execute()
 		{
@@ -317,10 +317,9 @@ var backpack =
 		itemType: 'consumable',
 		price: 100,
 		sellable: 1,
-		count: 0,
+		count: 20,
 		execute()
 		{
-			//attack w arrow
 			this.count -= 1;
 		}
 	},
@@ -349,11 +348,9 @@ var backpack =
 		itemType: 'consumable',
 		price: 100,
 		sellable: 1,
-		count: 0,
+		count: 5,
 		execute()
 		{
-			//destroy rock
-			//dmg enemy
 			this.count -= 1;
 		}
 	},
@@ -497,11 +494,14 @@ var backpack =
 		itemType: 'consumable',
 		price: 100,
 		sellable: 1,
-		count: 0,
+		count: 5,
 		execute()
 		{
-			//more code
-			this.count -= 1;
+			if(isInvi != 1 && this.count > 0)
+			{
+				isInvi = 1;
+				this.count -= 1;
+			}
 		}
 	},
 	{
@@ -516,7 +516,6 @@ var backpack =
 		count: 0,
 		execute()
 		{
-			//more code
 			if(isFly != 1 && this.count > 0)
 			{
 				isFly = 1;
@@ -585,6 +584,26 @@ function resetStat()
 	evasion = d_evasion;
 	dmg = d_dmg;
 }
+
+function displayItemInfo(id)
+{
+	var i = parseInt(id);
+	var aString = "---open-backpack---------------\n";
+	if(backpack[i].itemType != 'ability')
+	{
+		aString += backpack[i].showName + " (x" + backpack[i].count + ")\n";
+		aString += "price: " + backpack[i].price + "g. each\n";
+	}
+	else
+	{
+		aString += backpack[i].showName + " (learned)\n";
+		aString += "price: " + backpack[i].price + "g. per lesson\n";
+	}
+	aString += backpack[i].description + "\n";
+	aString += "---close-backpack--------------\n";
+	$('#outputInfo').append(aString);
+}
+
 
 //maxHP, HP, dmg, evasion from player.js
 function calculateStat()

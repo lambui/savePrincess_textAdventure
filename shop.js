@@ -85,9 +85,16 @@ class Shop
 			else
 				appendBuy += "onClick='buyItem(" + this.wareArray[i] + ")'>buy</button>";
 
+			//itemPrice
+			var appendPrice = "<div class='itemPrice'>";
+			appendPrice += backpack[this.wareArray[i]].price + "g.";
+			appendPrice += "</div>";
+
 			$('.shop .inner #content').append(appendName);
 			$('.shop .inner #content').append(appendSell);
 			$('.shop .inner #content').append(appendBuy);
+			$('.shop .inner #content').append(appendPrice);
+
 		}
 
 		$('.shop .inner #content').append("<div id='sellingItem'>Backpack:</div>");
@@ -134,6 +141,8 @@ class Shop
 function exitShop()
 {
 	$($('.shop')[0]).css('visibility', 'hidden');
+	$('#outputInfo').append($("#outputInfoShop").text());
+	$("#outputInfoShop").text("");
 }
 
 function sellItem(id) //id == itemID, also itemIndex
@@ -147,7 +156,7 @@ function sellItem(id) //id == itemID, also itemIndex
 	var sellPrice = Math.floor(backpack[id].price*(3/4));
 	gold += sellPrice;
 
-	$("#outputInfo").append("You sell " + backpack[id].showName + " for " + sellPrice + " gold(s).\n");
+	$("#outputInfoShop").append("You sell " + backpack[id].showName + " for " + sellPrice + " gold(s).\n");
 	currentRoom.roomContent.action(); //refresh the shop
 	calculateStat(); //function can be found in inventory.js
 }
@@ -162,7 +171,7 @@ function buyItem(id)
 	backpack[id].count += 1;
 	gold -= backpack[id].price;
 
-	$("#outputInfo").append("You buy " + backpack[id].showName + " for " + backpack[id].price + " gold(s).\n");
+	$("#outputInfoShop").append("You buy " + backpack[id].showName + " for " + backpack[id].price + " gold(s).\n");
 	currentRoom.roomContent.action(); //refresh the shop
 	calculateStat(); //function can be found in inventory.js
 }

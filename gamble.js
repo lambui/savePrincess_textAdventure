@@ -37,6 +37,11 @@ class Gamble
 		//get display betGold
 		$('#betGold').html(this.betGold);
 
+		if(this.betGold <= 0)
+			$('#startGamble')[0].disabled = true;
+		else
+			$('#startGamble')[0].disabled = false;
+
 		//disable + - buttons appropriately
 		$('#addGold')[0].disabled = false;
 		$('#removeGold')[0].disabled = false;
@@ -138,6 +143,8 @@ class Gamble
 function exitTable()
 {
 	$('#outputInfo').append($('#outputInfo2').text());
+	if(currentRoom.roomType() != 5)
+		$('#outputInfo2').text("");
 	$($('.gambleTable')[0]).css('visibility', 'hidden');
 }
 
@@ -160,6 +167,12 @@ function changeBetGold(input) //0 == add to bet, 1 == take away from bet
 			gambleRoom.betGold -= goldRate; 
 			break;
 	}
+
+	//disable start button
+	if(gambleRoom.betGold > 0)
+		$('#startGamble')[0].disabled = false;
+	else
+		$('#startGamble')[0].disabled = true;
 
 	$('#addGold')[0].disabled = false;
 	$('#removeGold')[0].disabled = false;

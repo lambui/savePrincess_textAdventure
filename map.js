@@ -278,8 +278,8 @@ function navigationAction(enterDirection) //string enterDirection
 			canSleep = 0;
 			canRun = 1;
 			break;
-		case 6:
-			if(currentRoom.roomContent.sleep == 1)
+		case 6: //monster
+			if(currentRoom.roomContent.sleep == 1 || isInvi)
 			{
 				canAdvance = 1;
 				canRun = 1;
@@ -291,7 +291,7 @@ function navigationAction(enterDirection) //string enterDirection
 			}
 			canSleep = 0;
 			break;
-		case 8:
+		case 8: //boss
 			canAdvance = 0;
 			canSleep = 0;
 			canRun = 0;
@@ -387,8 +387,8 @@ function goInDirection(direction) // 0 = left, 1 = up, 2 = right, 3 = down
 	currentRoom.roomContent.checkPlayer(); //check player special effects
 	drawMap();
 	showDescription();
-	navigationAction(enterDirection);
 	resetMordifier(); //can be found in player.js
+	navigationAction(enterDirection);
 	console.log(currentRoom.roomType());
 }
 

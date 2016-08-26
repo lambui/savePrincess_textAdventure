@@ -42,14 +42,21 @@ function updateHeroInfo()
 		//add items to inventory div
 		if(backpack[i].count > 0)
 			if(backpack[i].itemType != 'ability')
-				itemString += "<div>•" + backpack[i].showName + " (x" + backpack[i].count + ")" + "</div>\n";
+			{
+				itemString += "<div id='backpackItem" + i + "' onClick=\"displayItemInfo(this.id.substring('backpackItem'.length, this.id.length))\">•";
+				itemString += backpack[i].showName + " (x" + backpack[i].count + ")" + "</div>\n";
+			}
 			else
-				itemString += "<div>•" + backpack[i].showName + " (learned)</div>\n";
+			{
+				itemString += "<div id='backpackItem" + i + "' onClick=\"displayItemInfo(this.id.substring('backpackItem'.length, this.id.length))\">•";
+				itemString += backpack[i].showName + " (learned)</div>\n";
+			}
 	}
 	if(itemString != "") $(container2).append(itemString);
 	if(weaponString != "") $(container).append(weaponString);
 	if(armorString != "") $(container).append(armorString);
 	if(addonString != "") $(container).append(addonString);
+
 }
 
 $(document).ready(function()
@@ -85,4 +92,6 @@ $(document).ready(function()
 		$(this).scrollTop(this.scrollHeight);
 	});
 });
+
+
 
