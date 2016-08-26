@@ -11,14 +11,14 @@ class Trap
 		this.type = type;
 		this.visible = visible;
 
-		if(this.visible ==  1)
+		if(this.visible == 1)
 			this.canPass = 0;
 
 		this.luckyChance = 0;
 		switch(this.type)
 		{
 			case 0: this.luckyChance = 10; break;
-			case 1: this.luckyChance = 10; break;
+			case 1: this.luckyChance = 10; this.canPass = 1; break;
 			case 2: this.luckyChance = 0; break;
 			case 3: this.luckyChance = 0; break;
 			default: break;
@@ -31,7 +31,9 @@ class Trap
 		if(backpack[29].count > 0)
 		{
 			this.visible = 1;
-			this.canPass = 0;
+			this.canPass = 1;
+			if(this.type != 1)
+				this.canPass = 0;
 		}
 
 		//if player has counter for trap
@@ -93,9 +95,14 @@ class Trap
 				case 1: //arrow trap
 					if(isBlock == 0)
 					{
-						HP -= 20;
+						var HPLoss = 0;
+						if(20 < getRandomInt(0,99))
+							HPLoss = 5;
+						else
+							HPLoss = 20;
+						HP -= HPLoss;
 						aString += "You steps on a loose rock. Suddenly, millions of holes appear along the walls, shooting out endless rounds of arrows. ";
-						aString += "With nothing to cover yourself, you tries to sprint to the nearest exit... You lose 20 HP.\n";
+						aString += "With nothing to cover yourself, you tries to sprint to the nearest exit... You lose " + HPLoss + " HP.\n";
 					}
 					break;
 				case 2: //pike
@@ -138,11 +145,10 @@ class Trap
 			}
 			if(HP <= 0)
 			{
-
 				$("#outputInfo").append(aString + "You are dead.\n");
 				return 0;
 			}
-			$("#outputInfo").append("The trap sprung but you are alive.\n");
+			$("#outputInfo").append(aString + "The trap sprung but you are alive.\n");
 			return 1;
 		}
 	}

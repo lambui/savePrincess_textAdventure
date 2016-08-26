@@ -9,7 +9,7 @@ var backpack =
 		itemType: 'weapon',
 		price: 100,
 		sellable: 1,
-		count: 1,
+		count: 0,
 		gain: 5,
 		execute()
 		{
@@ -29,7 +29,7 @@ var backpack =
 		itemType: 'weapon',
 		price: 100,
 		sellable: 1,
-		count: 1,
+		count: 0,
 		gain: 5,
 		execute()
 		{
@@ -49,7 +49,7 @@ var backpack =
 		itemType: 'weapon',
 		price: 100,
 		sellable: 1,
-		count: 1,
+		count: 0,
 		gain: 5,
 		execute()
 		{
@@ -69,7 +69,7 @@ var backpack =
 		itemType: 'weapon',
 		price: 100,
 		sellable: 1,
-		count: 1,
+		count: 0,
 		gain: 5,
 		execute()
 		{
@@ -109,7 +109,7 @@ var backpack =
 		itemType: 'weapon',
 		price: 100,
 		sellable: 1,
-		count: 1,
+		count: 0,
 		gain: 20,
 		execute()
 		{
@@ -129,7 +129,7 @@ var backpack =
 		itemType: 'armor',
 		price: 100,
 		sellable: 1,
-		count: 1,
+		count: 0,
 		gain: 10,
 		execute()
 		{
@@ -154,7 +154,7 @@ var backpack =
 		itemType: 'armor',
 		price: 100,
 		sellable: 1,
-		count: 1,
+		count: 0,
 		gain: 10,
 		execute()
 		{
@@ -179,7 +179,7 @@ var backpack =
 		itemType: 'armor',
 		price: 100,
 		sellable: 1,
-		count: 1,
+		count: 0,
 		gain: 10,
 		execute()
 		{
@@ -204,7 +204,7 @@ var backpack =
 		itemType: 'armor',
 		price: 100,
 		sellable: 1,
-		count: 1,
+		count: 0,
 		gain: 10,
 		execute()
 		{
@@ -229,7 +229,7 @@ var backpack =
 		itemType: 'armor',
 		price: 100,
 		sellable: 1,
-		count: 1,
+		count: 0,
 		gain: 10,
 		execute()
 		{
@@ -254,7 +254,7 @@ var backpack =
 		itemType: 'armor',
 		price: 100,
 		sellable: 1,
-		count: 1,
+		count: 0,
 		gain: 30,
 		execute()
 		{
@@ -279,7 +279,7 @@ var backpack =
 		itemType: 'consumable',
 		price: 100,
 		sellable: 1,
-		count: 1,
+		count: 0,
 		heal: 10,
 		execute()
 		{
@@ -298,7 +298,7 @@ var backpack =
 		itemType: 'consumable',
 		price: 100,
 		sellable: 1,
-		count: 1,
+		count: 0,
 		heal: 20,
 		execute()
 		{
@@ -317,7 +317,7 @@ var backpack =
 		itemType: 'consumable',
 		price: 100,
 		sellable: 1,
-		count: 1,
+		count: 0,
 		execute()
 		{
 			//attack w arrow
@@ -333,7 +333,7 @@ var backpack =
 		itemType: 'consumable',
 		price: 100,
 		sellable: 1,
-		count: 1,
+		count: 0,
 		execute()
 		{
 			//light up room
@@ -349,7 +349,7 @@ var backpack =
 		itemType: 'consumable',
 		price: 100,
 		sellable: 1,
-		count: 1,
+		count: 0,
 		execute()
 		{
 			//destroy rock
@@ -366,7 +366,7 @@ var backpack =
 		itemType: 'consumable',
 		price: 100,
 		sellable: 1,
-		count: 1,
+		count: 0,
 		execute()
 		{
 			if(isFly != 1 && this.count > 0)
@@ -385,7 +385,7 @@ var backpack =
 		itemType: 'consumable',
 		price: 100,
 		sellable: 1,
-		count: 1,
+		count: 0,
 		execute()
 		{
 			//more code
@@ -405,7 +405,7 @@ var backpack =
 		itemType: 'consumable',
 		price: 100,
 		sellable: 1,
-		count: 1,
+		count: 0,
 		inUse: 0,
 		execute()
 		{
@@ -425,7 +425,7 @@ var backpack =
 		itemType: 'consumable',
 		price: 100,
 		sellable: 1,
-		count: 1,
+		count: 0,
 		execute()
 		{
 			//more code
@@ -445,7 +445,7 @@ var backpack =
 		itemType: 'addon',
 		price: 100,
 		sellable: 1,
-		count: 1
+		count: 0
 	},
 	{
 		id: 22,
@@ -486,7 +486,7 @@ var backpack =
 		itemType: 'ability',
 		price: 100,
 		sellable: 0,
-		count: 1
+		count: 0
 	},
 	{
 		id: 25,
@@ -497,7 +497,7 @@ var backpack =
 		itemType: 'consumable',
 		price: 100,
 		sellable: 1,
-		count: 1,
+		count: 0,
 		execute()
 		{
 			//more code
@@ -513,7 +513,7 @@ var backpack =
 		itemType: 'consumable',
 		price: 100,
 		sellable: 1,
-		count: 1,
+		count: 0,
 		execute()
 		{
 			//more code
@@ -533,7 +533,7 @@ var backpack =
 		itemType: 'addon',
 		price: 100,
 		sellable: 1,
-		count: 1,
+		count: 0,
 		gain: 15,
 		execute()
 		{
@@ -553,7 +553,7 @@ var backpack =
 		itemType: 'addon',
 		price: 100,
 		sellable: 1,
-		count: 1,
+		count: 0,
 		gain: 25,
 		baseDmg: 0,
 		execute()
@@ -570,7 +570,7 @@ var backpack =
 		id: 29,
 		passive: 0,
 		description: "no deception can pass through the gem-eye of this powerful necklace. Reveal even the tiniest of tricks.",
-		showName: "master gemstone of trickery",
+		showName: "master gemstone of truesight",
 		name: "trapRevealingTrinket",
 		itemType: 'addon',
 		price: 100,

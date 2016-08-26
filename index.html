@@ -6,12 +6,15 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script src="header.js"></script>
 	<script src="shop.js"></script>
+	<script src="chest.js"></script>
+	<script src="gamble.js"></script>
 	<script src="monster.js"></script>
 	<script src="trap.js"></script>
 	<script src="map.js"></script>
 	<script src="player.js"></script>
 	<script src="inventory.js"></script>
 	<script src="init.js"></script>
+	<script src="keyboardControl.js"></script>
 	<link rel="stylesheet" type="text/css" href="styleSheet.css">
 </head>
 <body>
@@ -23,12 +26,15 @@
 		<div id="dmg">1</div>
 		<div id="evasion">10%</div>
 		<div id="passiveItem">Equipment:</div>
+		<div id="inventoryItem">Backpack:</div>
 	</div>
 	<div class="main">
 		<div class='action'>
 			<button id='inspect' onClick='inspect()'>Inspect the room.</button>
 			<button id='melee' onClick="melee()">Charge!!!</button>
 			<button id='openShop' onClick="openShop()">Talk</button>
+			<button id='openGamble' onClick='openGamble()'>Talk</button>
+			<button id='openChest' onClick='openChest()'>Open the chest.</button>
 			<button id='jumpPit' onClick="jumpPit()">Jump!</button>
 			<button id='grapplingHook' onClick='useItem(this.id)'>Use grappling hook.</button>
 			<button id='fireResistantCloak' onClick='useItem(this.id)'>Put on fire-resistant cloak.</button>
@@ -56,6 +62,25 @@
 				<div id="sellingItem">Backpack:</div>
 			</div>
 			<button id='exit' onClick="exitShop()">Exit.</button>
+		</div>
+	</div>
+	<div class="gambleTable">
+		<div class='inner'>
+			<div id='name'>Game_Table</div>
+			<div id='tableContent'>
+				<textarea id='outputInfo2' type="text" class="outputField" ></textarea>
+				<div id="betArea">
+					<div id="betGold">1000</div>
+					<div id='controlButton'>
+						<button id="addGold" onClick='changeBetGold(0)'>+</button>
+						<button id="removeGold" onClick='changeBetGold(1)'>-</button>
+					</div>
+					<button id="startGamble" onClick='startGamble()'>Start</button>
+				</div>
+				<div id="choiceArea">
+				</div>
+			</div>
+			<button id='exit' onClick="exitTable()">Exit.</button>
 		</div>
 	</div>
 </body>

@@ -22,7 +22,7 @@ function init(inputName)
 	name = inputName;
 	HP = maxHP = d_maxHP;
 	evasion = d_evasion; //default evasion = 10%
-	gold = 20000;
+	gold = 500;
 	dmg = d_dmg;
 }
 
@@ -38,7 +38,7 @@ function hideAllAction()
 {
 	var actionOption = $('.action').children();
 	for(var i = 0; i < actionOption.length; i++)
-		$(actionOption[i]).slideUp('medium')
+		$(actionOption[i]).slideUp(0);
 }
 
 function action()
@@ -51,9 +51,8 @@ function action()
 	if(currentRoom == undefined)
 		return;
 
-	var actionOption = $('.action').children();
 	hideAllAction();
-	$(actionOption[0]).slideDown('medium');
+	$('#inspect').slideDown(0);
 
 	//enable item action
 	for(var i = 0; i < backpack.length; i++)
@@ -61,13 +60,13 @@ function action()
 		switch(backpack[i].name)
 		{
 			default: break;
-			case 'grapplingHook': if(backpack[i].count > 0) $('#grapplingHook').slideDown('medium'); break;
-			case 'fireResistantCloak': if(backpack[i].count > 0) $('#fireResistantCloak').slideDown('medium'); break;
-			case 'shield': if(backpack[i].count > 0) $('#shield').slideDown('medium'); break;
-			case 'springLoadedBoots': if(backpack[i].count > 0) $('#springLoadedBoots').slideDown('medium'); break;
-			case 'flightSpell': if(backpack[i].count > 0) $('#flightSpell').slideDown('medium'); break;
-			case 'waterSpell': if(backpack[i].count > 0) $('#waterSpell').slideDown('medium'); break;
-			case 'animatedWings': if(backpack[i].count > 0) $('#animatedWings').slideDown('medium'); break;
+			case 'grapplingHook': if(backpack[i].count > 0) $('#grapplingHook').slideDown(0); break;
+			case 'fireResistantCloak': if(backpack[i].count > 0) $('#fireResistantCloak').slideDown(0); break;
+			case 'shield': if(backpack[i].count > 0) $('#shield').slideDown(0); break;
+			case 'springLoadedBoots': if(backpack[i].count > 0) $('#springLoadedBoots').slideDown(0); break;
+			case 'flightSpell': if(backpack[i].count > 0) $('#flightSpell').slideDown(0); break;
+			case 'waterSpell': if(backpack[i].count > 0) $('#waterSpell').slideDown(0); break;
+			case 'animatedWings': if(backpack[i].count > 0) $('#animatedWings').slideDown(0); break;
 		}
 	}
 
@@ -86,12 +85,15 @@ function action()
 		*/
 
 		case 0: break;
-		case 1: $(actionOption[2]).slideDown('medium'); break;
+		case 1: $('#openShop').slideDown(0); break;
 		case 2: break;
-		case 3: break;
+		case 3:
+			if(currentRoom.roomContent.open == 0) 
+				$('#openChest').slideDown(0);
+			break;
 		case 4: break;
-		case 5: break;
-		case 6: $(actionOption[1]).slideDown('medium'); break;
+		case 5: $('#openGamble').slideDown(0); break;
+		case 6: $('#melee').slideDown(0); break;
 		case 7: break;
 		case 8: break;
 	}
@@ -107,6 +109,21 @@ function inspect()
 function openShop()
 {
 	$($('.shop')[0]).css('visibility', 'visible');
+	currentRoom.roomContent.action();
+}
+
+function openChest()
+{
+	if(currentRoom.roomType() != 3)
+		return;
+	currentRoom.roomContent.action();
+	action();
+	updateHeroInfo();
+}
+
+function openGamble()
+{
+	$($('.gambleTable')[0]).css('visibility', 'visible');
 	currentRoom.roomContent.action();
 }
 
@@ -152,6 +169,9 @@ function melee()
 
 	if(aMonster.isAlive())
 		$("#outputInfo").append(aMonster.action());
+
+	action();
+	updateHeroInfo();
 }
 
 function jumpPit() //only available when its a visible trap room and a pit
@@ -176,6 +196,8 @@ function useItem(itemName) //itemName == 'name' property of objects in backpack 
 
 	item.execute();
 	$("#outputInfo").append(isFly + " " + isBlock + " " + isFireResis + " " + isJump + "\n");
+	action();
+	updateHeroInfo();
 	updateNavigation(); //can be found in map.js
 }
 
@@ -189,5 +211,6 @@ function rest()
 	aString += "...You wake up to what feels like morning in this dank, cold place. You feels somewhat refreshed; your wound causes less pain now.\n"
 	aString += "You now have " + HP + " HP.\n"
 	$("#outputInfo").append(aString);
+	updateHeroInfo();
 }
 

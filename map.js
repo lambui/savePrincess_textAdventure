@@ -11,23 +11,6 @@ class Empty
 	}
 }
 
-class Chest
-{
-	constructor(danger)
-	{
-		this.danger = danger; // 0 == real chest, 1 == mimic
-	}
-
-	checkPlayer(){}
-
-	info()
-	{
-		var aString = "In a middle of room, you spot a weakly illuminating chest."
-		aString += "\n";
-		return aString;
-	}
-}
-
 class Riddle
 {
 	constructor() {}
@@ -40,39 +23,6 @@ class Riddle
 		aString += "'Adventurer, do not make haste. For I will yield the way if you will answer correctly my riddle... Or punishment if you won't.' ";
 		aString += "It raises its large stone hand and slams hard against the stony floor behind you, blocking the retreating path. ";
 		aString += "'Now, let's start.' The statue begins slowly.";
-		aString += "\n";
-		return aString;
-	}
-}
-
-class Gamble
-{
-	/*2 type of gamble:
-		normal = just win/lose gold
-		dark   = win/lose gold but also lose HP
-
-	2 type of games:
-		type 0: 1 out of 2
-		type 1: 1 out of 3
-	*/
-
-	constructor(dark, gameType)
-	{
-		this.dark = dark;
-		this.gameType = gameType;
-	}
-	checkPlayer(){}
-
-	info()
-	{
-		var aString = "In the middle of the room, you spot a powerful shade sitting at what seemed like a floating table. "
-		if(this.gameType == 0)
-			aString += " You can make out 2 objects sliding on top of the table. ";
-		else
-			aString += " You can barely see the 3 objects sitting atop the table. "
-		aString += "The shade gestures you forward. ";
-		if(this.dark == 1)
-			aString += "You have a bad feeling about this.";
 		aString += "\n";
 		return aString;
 	}
@@ -92,7 +42,7 @@ class Room
 	{
 		this.main = input;
 		this.loadRoom();
-		navigationAction();
+		updateNavigation();
 	}
 
 	customRock(input)
@@ -221,6 +171,12 @@ for(var i = 0; i < map.length; i++)
 	}
 }
 
+//make sure first room always be at the beginning of the array even if its shuffled
+var firstRoom = mapArray[0];
+mapArray.splice(0, 1); //cut off the first room
+shuffle(mapArray); //shuffle
+mapArray.unshift(firstRoom); //put back the first room at the start
+
 //generate roomType
 var indexCount = 0;
 var randomStart = getRandomInt(0, mapArray.length-1);
@@ -269,6 +225,15 @@ function navigationAction(enterDirection) //string enterDirection
 {
 	if(currentRoom == undefined)
 		return;
+
+	//mark retreat path
+	var navigationArray = $('.navigation').children();
+	for(var i = 0; i < navigationArray.length; i++)
+	{
+		$(navigationArray[i]).removeClass('retreat');
+		if(navigationArray[i].id == enterDirection)
+			$(navigationArray[i]).addClass('retreat');
+	}
 
 	var canAdvance = 1; //path is not blocked
 	var canSleep = 1;  //cant sleep here
@@ -334,7 +299,6 @@ function navigationAction(enterDirection) //string enterDirection
 	}
 
 	enableNavigationButtons();
-	var navigationArray = $('.navigation').children();
 
 	if(canAdvance == 0) //block all the other advancing path
 	{
@@ -345,14 +309,6 @@ function navigationAction(enterDirection) //string enterDirection
 
 	if(canSleep == 0) //disable sleep
 		navigationArray[navigationArray.length-1].disabled = true;
-
-	//mark retreat path
-	for(var i = 0; i < navigationArray.length; i++)
-	{
-		$(navigationArray[i]).removeClass('retreat');
-		if(navigationArray[i].id == enterDirection)
-			$(navigationArray[i]).addClass('retreat');
-	}
 
 	if(canRun == 0) //block retreat path
 		for(var i = 0; i < navigationArray.length; i++)
@@ -553,6 +509,7 @@ function drawMap()
 					draw += "┘";
 			}
 			draw += "\n | C A S T L E  M A P\n\n";
+			draw += "   ■: your location\n";
 			draw += "   B: boss\n";
 			draw += "   C: chest\n";
 			draw += "   G: gamble\n";

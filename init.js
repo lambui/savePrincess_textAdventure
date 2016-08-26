@@ -17,21 +17,36 @@ function updateHeroInfo()
 		}
 	}
 
-	//hero inventory
-	var container = heroInfo[heroInfo.length-1];
+	//hero equipment
+	var container = $('#passiveItem')[0];
 	container.innerHTML = "Equipment: "; //clear content of container
 	var weaponString = "";
 	var armorString = "";
 	var addonString = "";
+
+	//hero inventory
+	var container2 = $('#inventoryItem')[0];
+	container2.innerHTML = "Backpack: ";
+	var itemString = "";
+
 	for(var i = 0; i < backpack.length; i++)
 	{
+		//add appropriate items to equipment div
 		if(backpack[i].itemType == 'weapon' && backpack[i].count > 0)
 			weaponString = "<div>•" + backpack[i].showName + "</div>\n";
 		if(backpack[i].itemType == 'armor' && backpack[i].count > 0)
 			armorString = "<div>•" + backpack[i].showName + "</div>\n";
 		if(backpack[i].itemType == 'addon' && backpack[i].count > 0)
 			addonString += "<div>•" + backpack[i].showName + "</div>\n";
+
+		//add items to inventory div
+		if(backpack[i].count > 0)
+			if(backpack[i].itemType != 'ability')
+				itemString += "<div>•" + backpack[i].showName + " (x" + backpack[i].count + ")" + "</div>\n";
+			else
+				itemString += "<div>•" + backpack[i].showName + " (learned)</div>\n";
 	}
+	if(itemString != "") $(container2).append(itemString);
 	if(weaponString != "") $(container).append(weaponString);
 	if(armorString != "") $(container).append(armorString);
 	if(addonString != "") $(container).append(addonString);
