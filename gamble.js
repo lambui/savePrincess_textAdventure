@@ -122,6 +122,8 @@ class Gamble
 		$('#outputInfo2').append(aString);
 		this.betGold = 0; $('#betGold').html(this.betGold);
 		currentRoom.customRoomType(0);
+		currentRoom.roomContent.hasLight = 1;
+		updateNavigation();
 		updateHeroInfo();
 	}
 

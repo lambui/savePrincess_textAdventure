@@ -70,8 +70,10 @@ $(document).ready(function()
 	updateHeroInfo();
 
 	//init maze info
+	assignRandomRoomType();
 	posX = posY = 0;
 	currentRoom = map[posY][posX];
+	currentRoom.visit = 1;
 	console.log(posX + " " + posY);
 	drawMap();
 	showDescription();

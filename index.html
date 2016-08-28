@@ -5,11 +5,15 @@
 	<meta charset="UTF-8">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script src="header.js"></script>
+	<script src="empty.js"></script>
 	<script src="shop.js"></script>
+	<script src="secret.js"></script>
 	<script src="chest.js"></script>
+	<script src="riddle.js"></script>
 	<script src="gamble.js"></script>
 	<script src="monster.js"></script>
 	<script src="trap.js"></script>
+	<script src="boss.js"></script>
 	<script src="map.js"></script>
 	<script src="player.js"></script>
 	<script src="inventory.js"></script>
@@ -31,21 +35,25 @@
 	<div class="main">
 		<div class='action'>
 			<button id='inspect' onClick='inspect()'>Inspect the room.</button>
-			<button id='melee' onClick="melee()">Charge!!!</button>
-			<button id='arrow' onClick='shootArrow()'>Shoot arrow.</button>
-			<button id='bomb' onClick='useBomb()'>Throw explosive.</button>
+			<button id='blindWalk' onClick='blinkWalk()'>Fumble in the dark.</button>
 			<button id='openShop' onClick="openShop()">Talk</button>
+			<button id='openRiddle' onClick='openRiddle()'>Talk</button>
 			<button id='openGamble' onClick='openGamble()'>Talk</button>
 			<button id='openChest' onClick='openChest()'>Open the chest.</button>
 			<button id='jumpPit' onClick="jumpPit()">Jump!</button>
+			<button id='melee' onClick="melee()">Charge!!!</button>
+			<button id='arrow' onClick='shootArrow()'>Shoot arrow.</button>
+			<button id='bomb' onClick='useBomb()'>Throw explosive.</button>
 			<button id='potion1' onClick='useItem(this.id)'>Drink small potion.</button>
 			<button id='potion2' onClick='useItem(this.id)'>Drink large potion.</button>
+			<button id='torch' onClick='useItem(this.id)'>Light up torch.</button>
 			<button id='grapplingHook' onClick='useItem(this.id)'>Use grappling hook.</button>
 			<button id='fireResistantCloak' onClick='useItem(this.id)'>Put on fire-resistant cloak.</button>
 			<button id='shield' onClick='useItem(this.id)'>Held out shield.</button>
 			<button id='springLoadedBoots' onClick='useItem(this.id)'>Equip spring-loaded boots.</button>
 			<button id='flightSpell' onClick='useItem(this.id)'>Cast flight magic.</button>
 			<button id='waterSpell' onClick='useItem(this.id)'>Cast water magic.</button>
+			<button id='fireSpell' onClick='useItem(this.id)'>Cast fire magic.</button>
 			<button id="invisibleCloak" onClick='useItem(this.id)'>Put on invisible cloak.</button>
 			<button id='animatedWings' onClick='useItem(this.id)'>Wear animated wings.</button>
 		</div>
@@ -60,7 +68,7 @@
 			<button id='rest' onClick="rest()">Rest!</button>
 		</div>
 	</div>
-	<textarea id="map" type="text" class="outputField" readonly="readonly" rows="32" cols="20"></textarea>
+	<textarea id="map" type="text" class="outputField" readonly="readonly" rows="35" cols="20"></textarea>
 	<div class="shop">
 		<div class='inner'>
 			<div id='name'>Shop</div>
@@ -92,6 +100,33 @@
 				</div>
 			</div>
 			<button id='exit' onClick="exitTable()">Exit.</button>
+		</div>
+	</div>
+	<div class="riddleWindow">
+		<div class='inner'>
+			<div id='name'>Riddle_Question</div>
+			<div id='tableContent'>
+				<textarea id='outputInfo3' type="text" class="outputField" ></textarea>
+				<div id="riddleReply">
+					<div class='wrapper'>
+						<textarea id="replyArt1" type="text" class="outputField" readonly='readonly' rows="8" cols="15"></textarea>
+						<button id="reply1" onClick='chooseAnswer(this.id.substring("reply".length, this.id.length))'>Choose A</button>
+					</div>
+					<div class='wrapper'>
+						<textarea id="replyArt2" type="text" class="outputField" readonly='readonly' rows="8" cols="15"></textarea>
+						<button id="reply2" onClick='chooseAnswer(this.id.substring("reply".length, this.id.length))'>Choose B</button>
+					</div>
+					<div class='wrapper'>
+						<textarea id="replyArt3" type="text" class="outputField" readonly='readonly' rows="8" cols="15"></textarea>
+						<button id="reply3" onClick='chooseAnswer(this.id.substring("reply".length, this.id.length))'>Choose C</button>
+					</div>
+					<div class='wrapper'>
+						<textarea id="replyArt4" type="text" class="outputField" readonly='readonly' rows="8" cols="15"></textarea>
+						<button id="reply4" onClick='chooseAnswer(this.id.substring("reply".length, this.id.length))'>Choose D</button>
+					</div>
+				</div>
+			</div>
+			<button id='exit' onClick="exitRiddle()">Exit.</button>
 		</div>
 	</div>
 </body>

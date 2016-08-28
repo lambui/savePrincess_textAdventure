@@ -25,6 +25,12 @@ class Monster
 	isAlive()
 	{
 		this.alive = (this.HP > 0? true : false);
+		if(this.alive == false)
+		{
+			currentRoom.customRoomType(0);
+			currentRoom.roomContent.hasLight = 1;
+			updateNavigation();
+		}
 		return this.alive;
 	}
 

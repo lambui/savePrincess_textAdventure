@@ -9,7 +9,7 @@ var backpack =
 		itemType: 'weapon',
 		price: 100,
 		sellable: 1,
-		count: 0,
+		count: 1,
 		gain: 5,
 		execute()
 		{
@@ -29,7 +29,7 @@ var backpack =
 		itemType: 'weapon',
 		price: 100,
 		sellable: 1,
-		count: 0,
+		count: 1,
 		gain: 5,
 		execute()
 		{
@@ -49,7 +49,7 @@ var backpack =
 		itemType: 'weapon',
 		price: 100,
 		sellable: 1,
-		count: 0,
+		count: 1,
 		gain: 5,
 		execute()
 		{
@@ -69,7 +69,7 @@ var backpack =
 		itemType: 'weapon',
 		price: 100,
 		sellable: 1,
-		count: 0,
+		count: 1,
 		gain: 5,
 		execute()
 		{
@@ -109,7 +109,7 @@ var backpack =
 		itemType: 'weapon',
 		price: 100,
 		sellable: 1,
-		count: 0,
+		count: 1,
 		gain: 20,
 		execute()
 		{
@@ -129,7 +129,7 @@ var backpack =
 		itemType: 'armor',
 		price: 100,
 		sellable: 1,
-		count: 0,
+		count: 1,
 		gain: 10,
 		execute()
 		{
@@ -154,7 +154,7 @@ var backpack =
 		itemType: 'armor',
 		price: 100,
 		sellable: 1,
-		count: 0,
+		count: 1,
 		gain: 10,
 		execute()
 		{
@@ -179,7 +179,7 @@ var backpack =
 		itemType: 'armor',
 		price: 100,
 		sellable: 1,
-		count: 0,
+		count: 1,
 		gain: 10,
 		execute()
 		{
@@ -204,7 +204,7 @@ var backpack =
 		itemType: 'armor',
 		price: 100,
 		sellable: 1,
-		count: 0,
+		count: 1,
 		gain: 10,
 		execute()
 		{
@@ -229,7 +229,7 @@ var backpack =
 		itemType: 'armor',
 		price: 100,
 		sellable: 1,
-		count: 0,
+		count: 1,
 		gain: 10,
 		execute()
 		{
@@ -254,7 +254,7 @@ var backpack =
 		itemType: 'armor',
 		price: 100,
 		sellable: 1,
-		count: 0,
+		count: 1,
 		gain: 30,
 		execute()
 		{
@@ -279,7 +279,7 @@ var backpack =
 		itemType: 'consumable',
 		price: 100,
 		sellable: 1,
-		count: 5,
+		count: 1,
 		heal: 10,
 		execute()
 		{
@@ -298,7 +298,7 @@ var backpack =
 		itemType: 'consumable',
 		price: 100,
 		sellable: 1,
-		count: 5,
+		count: 1,
 		heal: 20,
 		execute()
 		{
@@ -317,7 +317,7 @@ var backpack =
 		itemType: 'consumable',
 		price: 100,
 		sellable: 1,
-		count: 20,
+		count: 10,
 		execute()
 		{
 			this.count -= 1;
@@ -332,10 +332,17 @@ var backpack =
 		itemType: 'consumable',
 		price: 100,
 		sellable: 1,
-		count: 0,
+		count: 1,
 		execute()
 		{
-			//light up room
+			if(currentRoom == undefined)
+				return;
+
+			if(currentRoom.roomType() == 0 || currentRoom.roomType() == 2) //if not empty or secret 
+			{
+				currentRoom.roomContent.hasLight = 1;
+			}
+
 			this.count -= 1;
 		}
 	},
@@ -348,7 +355,7 @@ var backpack =
 		itemType: 'consumable',
 		price: 100,
 		sellable: 1,
-		count: 5,
+		count: 1,
 		execute()
 		{
 			this.count -= 1;
@@ -363,7 +370,7 @@ var backpack =
 		itemType: 'consumable',
 		price: 100,
 		sellable: 1,
-		count: 0,
+		count: 1,
 		execute()
 		{
 			if(isFly != 1 && this.count > 0)
@@ -382,7 +389,7 @@ var backpack =
 		itemType: 'consumable',
 		price: 100,
 		sellable: 1,
-		count: 0,
+		count: 1,
 		execute()
 		{
 			//more code
@@ -402,7 +409,7 @@ var backpack =
 		itemType: 'consumable',
 		price: 100,
 		sellable: 1,
-		count: 0,
+		count: 1,
 		inUse: 0,
 		execute()
 		{
@@ -422,7 +429,7 @@ var backpack =
 		itemType: 'consumable',
 		price: 100,
 		sellable: 1,
-		count: 0,
+		count: 1,
 		execute()
 		{
 			//more code
@@ -442,7 +449,7 @@ var backpack =
 		itemType: 'addon',
 		price: 100,
 		sellable: 1,
-		count: 0
+		count: 1
 	},
 	{
 		id: 22,
@@ -483,7 +490,19 @@ var backpack =
 		itemType: 'ability',
 		price: 100,
 		sellable: 0,
-		count: 0
+		count: 1,
+		execute()
+		{
+			if(currentRoom == undefined)
+				return;
+
+			if(currentRoom.roomType() == 0 || currentRoom.roomType() == 2) //if not empty or secret 
+			{
+				currentRoom.roomContent.hasLight = 1;
+			}
+
+			currentRoom.roomContent.hasLight = 1;
+		}
 	},
 	{
 		id: 25,
@@ -494,7 +513,7 @@ var backpack =
 		itemType: 'consumable',
 		price: 100,
 		sellable: 1,
-		count: 5,
+		count: 1,
 		execute()
 		{
 			if(isInvi != 1 && this.count > 0)
@@ -513,7 +532,7 @@ var backpack =
 		itemType: 'consumable',
 		price: 100,
 		sellable: 1,
-		count: 0,
+		count: 1,
 		execute()
 		{
 			if(isFly != 1 && this.count > 0)
@@ -532,7 +551,7 @@ var backpack =
 		itemType: 'addon',
 		price: 100,
 		sellable: 1,
-		count: 0,
+		count: 1,
 		gain: 15,
 		execute()
 		{
@@ -552,7 +571,7 @@ var backpack =
 		itemType: 'addon',
 		price: 100,
 		sellable: 1,
-		count: 0,
+		count: 1,
 		gain: 25,
 		baseDmg: 0,
 		execute()
@@ -574,7 +593,7 @@ var backpack =
 		itemType: 'addon',
 		price: 100,
 		sellable: 1,
-		count: 0
+		count: 1
 	}
 ]
 
@@ -589,16 +608,31 @@ function displayItemInfo(id)
 {
 	var i = parseInt(id);
 	var aString = "---open-backpack---------------\n";
-	if(backpack[i].itemType != 'ability')
+	switch(backpack[i].itemType)
 	{
-		aString += backpack[i].showName + " (x" + backpack[i].count + ")\n";
-		aString += "price: " + backpack[i].price + "g. each\n";
+		case 'ability':
+			aString += backpack[i].showName + " (learned)\n";
+			aString += "item type: " + backpack[i].itemType + " - can be learn once, have infinite use.\n";
+			break;
+		case 'weapon':
+			aString += backpack[i].showName + " (x" + backpack[i].count + ")\n";
+			aString += "item type: " + backpack[i].itemType + " - auto equip the best one in inventory, gain increase damage.\n";
+			break;
+		case 'armor':
+			aString += backpack[i].showName + " (x" + backpack[i].count + ")\n";
+			aString += "item type: " + backpack[i].itemType + " - auto equip the best one in inventory, gain increase HP.\n";
+			break;
+		case 'consumable':
+			aString += backpack[i].showName + " (x" + backpack[i].count + ")\n";
+			aString += "item type: " + backpack[i].itemType + " - each use consumes one, its effect lasts for one room.\n";
+			break;
+		case 'addon':
+			aString += backpack[i].showName + " (x" + backpack[i].count + ")\n";
+			aString += "item type: " + backpack[i].itemType + " - auto equip once, do not stack, provide different perks once equipped.\n";
+			break;
+		default: break;
 	}
-	else
-	{
-		aString += backpack[i].showName + " (learned)\n";
-		aString += "price: " + backpack[i].price + "g. per lesson\n";
-	}
+	aString += "price: " + backpack[i].price + "g.\n";
 	aString += backpack[i].description + "\n";
 	aString += "---close-backpack--------------\n";
 	$('#outputInfo').append(aString);

@@ -1,41 +1,11 @@
-
-class Empty
-{
-	constructor() {}
-	checkPlayer(){}
-	info()
-	{
-		var aString = "A seemingly empty room."
-		aString += "\n";
-		return aString;
-	}
-}
-
-class Riddle
-{
-	constructor() {}
-	checkPlayer(){}
-
-	info()
-	{
-		var aString = "Sitting squarely in the middle of the entire room is an mountain-like statue. It blocks all the other paths leading further into the castle. ";
-		aString += "The only way to pass is going back but as you turning back, the statue starts speaking. Its low, booming voice echoes the room: ";
-		aString += "'Adventurer, do not make haste. For I will yield the way if you will answer correctly my riddle... Or punishment if you won't.' ";
-		aString += "It raises its large stone hand and slams hard against the stony floor behind you, blocking the retreating path. ";
-		aString += "'Now, let's start.' The statue begins slowly.";
-		aString += "\n";
-		return aString;
-	}
-}
-
 class Room
 {
-	constructor(main, hasRock, lighting)
+	constructor(ID)
 	{
-		this.main = main;
-		this.hasRock = hasRock;
-		this.lighting = lighting;
-		this.roomContent = new Empty();
+		this.id = ID;
+		this.main = 0;
+		this.visit = 0;
+		this.roomContent = new Empty(this);
 	}
 
 	customRoomType(input)
@@ -43,16 +13,6 @@ class Room
 		this.main = input;
 		this.loadRoom();
 		updateNavigation();
-	}
-
-	customRock(input)
-	{
-		this.hasRock = input;
-	}
-
-	customLight(input)
-	{
-		this.lighting = input;
 	}
 
 	roomType()
@@ -65,16 +25,16 @@ class Room
 		switch(this.main)
 		{
 			case 0: //empty
-			case 2: //secret
 			default: this.loadEmpty(); break;
 			case 1: this.loadShop(getRandomInt(0,1)); break;
+			case 2: this.loadSecret(); break;//secret
 			case 3: this.loadChest(getRandomInt(0,1)); break;
 			case 4: this.loadRiddle(); break;
 			case 5: this.loadGamble(getRandomInt(0,1), getRandomInt(0,1)); break;
 			case 6: this.loadMonster(getRandomInt(1,3), getRandomInt(0,1), getRandomInt(0,1)); break;
 			case 7: this.loadTrap(getRandomInt(0,3), getRandomInt(0,1)); break;
+			case 8: this.loadBoss(); break;
 		}
-		console.log(this.showRoomContent());
 		return;
 	}
 
@@ -86,6 +46,11 @@ class Room
 	loadShop(shopType)
 	{
 		this.roomContent = new Shop(shopType);
+	}
+
+	loadSecret()
+	{
+		this.roomContent = new Secret();
 	}
 
 	loadChest(danger)
@@ -111,6 +76,11 @@ class Room
 	loadGamble(gambleType, gameType) //boolean gambleType, boolean gameType
 	{
 		this.roomContent = new Gamble(gambleType, gameType);
+	}
+
+	loadBoss()
+	{
+		this.roomContent = new Boss();
 	}
 
 	showRoomContent()
@@ -163,7 +133,7 @@ for(var i = 0; i < map.length; i++)
 {
 	for(var j = 0; j < map[i].length; j++)
 	{
-		map[i][j] = new Room(0, 0, 1);
+		map[i][j] = new Room(index);
 
 		//put them in a 1D array
 		mapArray[index] = map[i][j];
@@ -177,32 +147,55 @@ mapArray.splice(0, 1); //cut off the first room
 shuffle(mapArray); //shuffle
 mapArray.unshift(firstRoom); //put back the first room at the start
 
-//generate roomType
-var indexCount = 0;
-var randomStart = getRandomInt(0, mapArray.length-1);
-while(indexCount < mapArray.length)
+function assignRandomRoomType()
 {
-	var i = (randomStart + indexCount)%(mapArray.length);
-	if(i == 0)
+	//generate roomType
+	var indexCount = 0;
+	var randomStart = getRandomInt(0, mapArray.length-1);
+	while(indexCount < mapArray.length)
 	{
-		mapArray[i].customRoomType(0);
-		roomTypeCounter[0] += 1;
-		indexCount += 1;
-		continue;
-	}
-
-	while(true)
-	{
-		var randomType = getRandomInt(0, roomTypeCounter.length-1);
-		if(roomTypeCounter[randomType] < roomTypeLimit[randomType])
+		var i = (randomStart + indexCount)%(mapArray.length);
+		mapArray[i].visit = 0; //unvisit it
+		if(i == 0)
 		{
-			mapArray[i].customRoomType(randomType);
-			roomTypeCounter[randomType] += 1;
-			break;
+			mapArray[i].customRoomType(0);
+			roomTypeCounter[0] += 1;
+			indexCount += 1;
+			continue;
 		}
-	}
 
-	indexCount += 1;
+		while(true)
+		{
+			var randomType = getRandomInt(0, roomTypeCounter.length-1);
+			if(roomTypeCounter[randomType] < roomTypeLimit[randomType])
+			{
+				mapArray[i].customRoomType(randomType);
+				roomTypeCounter[randomType] += 1;
+				break;
+			}
+		}
+
+
+		indexCount += 1;
+	}
+}
+
+function reshuffleMaze()
+{
+	if(currentRoom == undefined)
+		return;
+
+	var currentIndex = mapArray.indexOf(currentRoom);
+	mapArray.splice(currentIndex, 1);
+	shuffle(mapArray);
+
+	//reset roomTypeCounter and add currentRoomType
+	for(var i = 0; i < roomTypeCounter.length; i++)
+		roomTypeCounter[i] = 0;
+	roomTypeCounter[currentRoom.roomType()] += 1;
+
+	assignRandomRoomType();
+	mapArray.push(currentRoom);
 }
 
 //this 2 will mark the current coordinate of the current room
@@ -255,10 +248,17 @@ function navigationAction(enterDirection) //string enterDirection
 		boss 	1 	8
 		*/
 		default: break;
-		case 0:
-		case 1:
-		case 2:
-		case 3:
+		case 0: //empty
+		case 2: //secret
+			if(currentRoom.roomContent.hasLight == 0)
+				canAdvance = 0;
+			else
+				canAdcance = 1;
+			canSleep = 1;
+			canRun = 1;
+			break;
+		case 1: //shop
+		case 3: //chest
 			canAdvance = 1;
 			canSleep = 1;
 			canRun = 1;
@@ -266,7 +266,10 @@ function navigationAction(enterDirection) //string enterDirection
 		case 4:
 			canAdvance = 0;
 			canSleep = 0;
-			canRun = 0;
+			if(currentRoom.roomContent.playOnce)
+				canRun = 1;
+			else
+				canRun = 0;
 			break;
 		case 5: //gamble
 			canAdvance = 0;
@@ -331,6 +334,13 @@ function updateNavigation()
 {
 	if(currentRoom == undefined)
 		return;
+
+	if($('.retreat')[0] == undefined)
+	{
+		navigationAction('');
+		return;
+	}
+
 	navigationAction($('.retreat')[0].id);
 }
 
@@ -384,12 +394,12 @@ function goInDirection(direction) // 0 = left, 1 = up, 2 = right, 3 = down
 		default: break;
 	}
 	currentRoom = map[posY][posX];
+	currentRoom.visit = 1;
 	currentRoom.roomContent.checkPlayer(); //check player special effects
 	drawMap();
 	showDescription();
 	resetMordifier(); //can be found in player.js
 	navigationAction(enterDirection);
-	console.log(currentRoom.roomType());
 }
 
 function goRight()
@@ -445,33 +455,43 @@ function drawMap()
 			if(j == 0) //far left wall
 				draw += "|";
 			if(i == posY && j == posX)
-				draw += "■";
+				draw += "●"; //©
 			else
 			{
-				var roomType = map[i][j].roomType();
-				switch(roomType)
+				if(map[i][j].visit == 0) //if room has not been visited
+					draw += "?";
+				else //if it is
 				{
-					/*
-					empty 	10 	0
-					shop	5 	1
-					secret 	5 	2
-					chest 	10 	3
-					riddle 	10 	4
-					gamble 	10 	5
-					monster 34 	6
-					trap 	15 	7
-					boss 	1 	8
-					*/
-					case 0: draw += " "; break;
-					case 1: draw += "S"; break;
-					case 2: draw += " "; break;
-					case 3: draw += "C"; break;
-					case 4: draw += "R"; break;
-					case 5: draw += "G"; break;
-					case 6: draw += "M"; break;
-					case 7: draw += "T"; break;
-					case 8: draw += "B"; break;
-					default: draw += " "; break;
+					var roomType = map[i][j].roomType();
+					switch(roomType)
+					{
+						/*
+						empty 	10 	0
+						shop	5 	1
+						secret 	5 	2
+						chest 	10 	3
+						riddle 	10 	4
+						gamble 	10 	5
+						monster 34 	6
+						trap 	15 	7
+						boss 	1 	8
+						*/
+						case 0:
+						case 2: 
+							if(map[i][j].roomContent.hasLight) 
+								draw += " ";
+							else
+								draw += "■";
+							break;
+						case 1: draw += "S"; break;
+						case 3: draw += "C"; break;
+						case 4: draw += "R"; break;
+						case 5: draw += "G"; break;
+						case 6: draw += "M"; break;
+						case 7: draw += "T"; break;
+						case 8: draw += "B"; break;
+						default: draw += " "; break;
+					}
 				}
 				//"■";
 			}
@@ -509,7 +529,8 @@ function drawMap()
 					draw += "┘";
 			}
 			draw += "\n | C A S T L E  M A P\n\n";
-			draw += "   ■: your location\n";
+			draw += "   ●: your character\n";
+			draw += "   ■: dark room\n";
 			draw += "   B: boss\n";
 			draw += "   C: chest\n";
 			draw += "   G: gamble\n";
@@ -521,13 +542,28 @@ function drawMap()
 	}
 
 	$("#map").text(draw);
-	console.log(draw);
 }
 
 //room description
 function showDescription()
 {
 	var desc = currentRoom.showRoomContent();
-	console.log(desc);
+	if(currentRoom.roomType() == 0 || currentRoom.roomType() == 2)
+		if(currentRoom.roomContent.hasLight == 0)
+		{
+			$("#outputInfo").css('background-color', 'black');
+			$("#outputInfo").css('color', 'white');
+		}
+		else
+		{
+			$("#outputInfo").css('background-color', 'white');
+			$("#outputInfo").css('color', 'black');
+		}
+	else
+	{
+		$("#outputInfo").css('background-color', 'white');
+		$("#outputInfo").css('color', 'black');
+	}
+
 	$("#outputInfo").text(desc);
 }
