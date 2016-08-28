@@ -18,6 +18,9 @@ class Monster
 		this.sleep = sleep;
 		this.flying = flying;
 		this.alive = true;
+		this.gold = hardness*getRandomInt(0,100);
+		this.reward = getRandomInt(0, backpack.length-1);
+		this.count = hardness*getRandomInt(1,3);
 	}
 
 	checkPlayer(){}
@@ -27,9 +30,17 @@ class Monster
 		this.alive = (this.HP > 0? true : false);
 		if(this.alive == false)
 		{
+			gold += this.gold;
+			if(backpack[this.reward].itemType == 'ability' && backpack[this.reward].count <= 0)
+				backpack[this.reward].count = 1;
+			else
+				backpack[this.reward].count += this.count;
+
 			currentRoom.customRoomType(0);
 			currentRoom.roomContent.hasLight = 1;
+
 			updateNavigation();
+			updateHeroInfo();
 		}
 		return this.alive;
 	}
