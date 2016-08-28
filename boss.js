@@ -82,20 +82,18 @@ class Boss
 				return aString;
 			}
 		}
-		else
-		{
-			if(evasion > getRandomInt(0,99))
-				return aString + "The Demon swings hit heavy hammer toward you. You skillfully jump aside, dodging his strike.\n"
 
-			dmgDealt = Math.floor(this.dmg*getRandom(0.75,1.25));
-			HP -= dmgDealt;
-			aString += "The Demon slams his hammer sparely on your chest, doing " + dmgDealt + " dmg. ";
-			if(HP <= 0)
-				return aString + "you are dead.\n";
-			aString += "You have " + HP + " HP left.";
-			aString += "\n";
-			return aString;
-		}
+		if(evasion > getRandomInt(0,99))
+			return aString + "The Demon swings hit heavy hammer toward you. You skillfully jump aside, dodging his strike.\n"
+
+		dmgDealt = Math.floor(this.dmg*getRandom(0.75,1.25));
+		HP -= dmgDealt;
+		aString += "The Demon slams his hammer sparely on your chest, doing " + dmgDealt + " dmg. ";
+		if(HP <= 0)
+			return aString + "you are dead.\n";
+		aString += "You have " + HP + " HP left.";
+		aString += "\n";
+		return aString;
 	}
 
 	info()
