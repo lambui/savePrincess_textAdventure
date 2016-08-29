@@ -145,8 +145,8 @@ class Trap
 			}
 			if(HP <= 0)
 			{
-				endGame(0);
 				$("#outputInfo").append(aString + "You are dead.\n");
+				endGame(0);
 				return 0;
 			}
 			$("#outputInfo").append(aString + "The trap sprung but you are alive.\n");
