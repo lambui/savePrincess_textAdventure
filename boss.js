@@ -30,9 +30,9 @@ class Boss
 		this.alive = (this.HP > 0? true : false);
 		if(this.alive == false)
 		{
-			currentRoom.customRoomType(0);
-			currentRoom.roomContent.hasLight = 1;
+			currentRoom.customRoomType(9); //load BossDefeated
 			updateNavigation();
+			showDescription();
 		}
 		return this.alive;
 	}
@@ -76,7 +76,7 @@ class Boss
 			if(checkSuccessRate(40)) //40% cast slam
 			{
 				dmgDealt = 25;
-				aString += "The Demon suddenly slams down his large hammer causing a small quake, doing " + dmgDealt + " dmg. ";
+				aString += "The Demon suddenly slams down his large hammer causing a small quake, doing " + dmgDealt + " dmg.\n";
 				HP -= dmgDealt;
 				this.slammed = 1;
 				return aString;
@@ -88,9 +88,13 @@ class Boss
 
 		dmgDealt = Math.floor(this.dmg*getRandom(0.75,1.25));
 		HP -= dmgDealt;
-		aString += "The Demon slams his hammer sparely on your chest, doing " + dmgDealt + " dmg. ";
+		aString += "The Demon slams his hammer sparely on your chest, doing " + dmgDealt + " dmg.\n";
 		if(HP <= 0)
-			return aString + "you are dead.\n";
+		{
+			$('#outputInfo').append(aString + "You are dead!\n");
+			endGame(0);
+			return;
+		}
 		aString += "You have " + HP + " HP left.";
 		aString += "\n";
 		return aString;
@@ -99,6 +103,19 @@ class Boss
 	info()
 	{
 		var aString = "Demon room with " + this.HP + "HP and " + this.dmg + "dmg.\n";
+		return aString;
+	}
+}
+
+class BossDefeated
+{
+	constructor() {}
+	checkPlayer(){}
+	action() {}
+	info()
+	{
+		var aString = "The Demon lies dead. You press your way deep into the dark room.\n";
+		aString += "You found princess Madeleine in the back of the room. She is chained up and held against a wall. She looks weak.\n";
 		return aString;
 	}
 }

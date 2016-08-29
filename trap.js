@@ -52,7 +52,7 @@ class Trap
 		var aString = "";
 		if(this.visible == 0)
 		{
-			return "An omnious room.\n";
+			return "A seemingly empty room.\n";
 		}
 		
 		aString += "A dangerous room. It is filled with ";
@@ -145,6 +145,7 @@ class Trap
 			}
 			if(HP <= 0)
 			{
+				endGame(0);
 				$("#outputInfo").append(aString + "You are dead.\n");
 				return 0;
 			}

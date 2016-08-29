@@ -87,8 +87,16 @@ class Riddle
 			$('#outputInfo3').append("WRONG!!! Now suffer your own stupidity!\n");
 			HP -= Math.floor(25*maxHP/100); //lose 25% HP
 
+			if(HP <= 0)
+			{
+				endGame(0);
+				return;
+			}
+
 			if(checkSuccessRate(30)) //there a 30% on it changes the maze
-			{}
+			{
+				reshuffleMaze();
+			}
 		}
 
 		this.playOnce = 1;

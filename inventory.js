@@ -7,9 +7,9 @@ var backpack =
 		showName: "steel dagger",
 		name: "sword1",
 		itemType: 'weapon',
-		price: 100,
+		price: 250,
 		sellable: 1,
-		count: 1,
+		count: 0,
 		gain: 5,
 		execute()
 		{
@@ -27,9 +27,9 @@ var backpack =
 		showName: "iron sword",
 		name: "sword2",
 		itemType: 'weapon',
-		price: 100,
+		price: 250,
 		sellable: 1,
-		count: 1,
+		count: 0,
 		gain: 5,
 		execute()
 		{
@@ -47,9 +47,9 @@ var backpack =
 		showName: "steel sword",
 		name: "sword3",
 		itemType: 'weapon',
-		price: 100,
+		price: 250,
 		sellable: 1,
-		count: 1,
+		count: 0,
 		gain: 5,
 		execute()
 		{
@@ -67,9 +67,9 @@ var backpack =
 		showName: "steel broad sword",
 		name: "sword4",
 		itemType: 'weapon',
-		price: 100,
+		price: 250,
 		sellable: 1,
-		count: 1,
+		count: 0,
 		gain: 5,
 		execute()
 		{
@@ -87,9 +87,9 @@ var backpack =
 		showName: "diamond-edge sword",
 		name: "sword5",
 		itemType: 'weapon',
-		price: 100,
+		price: 250,
 		sellable: 1,
-		count: 1,
+		count: 0,
 		gain: 5,
 		execute()
 		{
@@ -107,9 +107,9 @@ var backpack =
 		showName: "legendary sword",
 		name: "legendSword",
 		itemType: 'weapon',
-		price: 100,
+		price: 1000,
 		sellable: 1,
-		count: 1,
+		count: 0,
 		gain: 20,
 		execute()
 		{
@@ -127,9 +127,9 @@ var backpack =
 		showName: "leather tunic",
 		name: "armor1",
 		itemType: 'armor',
-		price: 100,
+		price: 200,
 		sellable: 1,
-		count: 1,
+		count: 0,
 		gain: 10,
 		execute()
 		{
@@ -152,9 +152,9 @@ var backpack =
 		showName: "iron chain mail",
 		name: "armor2",
 		itemType: 'armor',
-		price: 100,
+		price: 200,
 		sellable: 1,
-		count: 1,
+		count: 0,
 		gain: 10,
 		execute()
 		{
@@ -177,9 +177,9 @@ var backpack =
 		showName: "steel chain mail",
 		name: "armor3",
 		itemType: 'armor',
-		price: 100,
+		price: 200,
 		sellable: 1,
-		count: 1,
+		count: 0,
 		gain: 10,
 		execute()
 		{
@@ -202,9 +202,9 @@ var backpack =
 		showName: "plate mail",
 		name: "armor4",
 		itemType: 'armor',
-		price: 100,
+		price: 200,
 		sellable: 1,
-		count: 1,
+		count: 0,
 		gain: 10,
 		execute()
 		{
@@ -227,9 +227,9 @@ var backpack =
 		showName: "dragon-scale plate mail",
 		name: "armor5",
 		itemType: 'armor',
-		price: 100,
+		price: 200,
 		sellable: 1,
-		count: 1,
+		count: 0,
 		gain: 10,
 		execute()
 		{
@@ -252,9 +252,9 @@ var backpack =
 		showName: "legendary plate mail",
 		name: "legendArmor",
 		itemType: 'armor',
-		price: 100,
+		price: 1000,
 		sellable: 1,
-		count: 1,
+		count: 0,
 		gain: 30,
 		execute()
 		{
@@ -277,9 +277,9 @@ var backpack =
 		showName: "small potion",
 		name: "potion1",
 		itemType: 'consumable',
-		price: 100,
+		price: 30,
 		sellable: 1,
-		count: 1,
+		count: 0,
 		heal: 10,
 		execute()
 		{
@@ -296,10 +296,10 @@ var backpack =
 		showName: "large potion",
 		name: "potion2",
 		itemType: 'consumable',
-		price: 100,
+		price: 50,
 		sellable: 1,
-		count: 1,
-		heal: 20,
+		count: 0,
+		heal: 25,
 		execute()
 		{
 			HP += this.heal;
@@ -315,9 +315,9 @@ var backpack =
 		showName: "arrow",
 		name: "arrow",
 		itemType: 'consumable',
-		price: 100,
+		price: 10,
 		sellable: 1,
-		count: 10,
+		count: 0,
 		execute()
 		{
 			this.count -= 1;
@@ -330,9 +330,9 @@ var backpack =
 		showName: "torch",
 		name: "torch",
 		itemType: 'consumable',
-		price: 100,
+		price: 30,
 		sellable: 1,
-		count: 1,
+		count: 0,
 		execute()
 		{
 			if(currentRoom == undefined)
@@ -353,9 +353,9 @@ var backpack =
 		showName: "bomb",
 		name: "bomb",
 		itemType: 'consumable',
-		price: 100,
+		price: 50,
 		sellable: 1,
-		count: 1,
+		count: 0,
 		execute()
 		{
 			this.count -= 1;
@@ -368,9 +368,9 @@ var backpack =
 		showName: "grappling hook",
 		name: "grapplingHook",
 		itemType: 'consumable',
-		price: 100,
+		price: 120,
 		sellable: 1,
-		count: 1,
+		count: 0,
 		execute()
 		{
 			if(isFly != 1 && this.count > 0)
@@ -387,9 +387,9 @@ var backpack =
 		showName: "fire-resistant cloak",
 		name: "fireResistantCloak",
 		itemType: 'consumable',
-		price: 100,
+		price: 120,
 		sellable: 1,
-		count: 1,
+		count: 0,
 		execute()
 		{
 			//more code
@@ -407,9 +407,9 @@ var backpack =
 		showName: "shield",
 		name: "shield",
 		itemType: 'consumable',
-		price: 100,
+		price: 120,
 		sellable: 1,
-		count: 1,
+		count: 0,
 		inUse: 0,
 		execute()
 		{
@@ -427,9 +427,9 @@ var backpack =
 		showName: "spring-loaded boots",
 		name: "springLoadedBoots",
 		itemType: 'consumable',
-		price: 100,
+		price: 120,
 		sellable: 1,
-		count: 1,
+		count: 0,
 		execute()
 		{
 			//more code
@@ -447,9 +447,9 @@ var backpack =
 		showName: "heat goggles",
 		name: "heatGoggles",
 		itemType: 'addon',
-		price: 100,
+		price: 500,
 		sellable: 1,
-		count: 1
+		count: 0
 	},
 	{
 		id: 22,
@@ -458,9 +458,9 @@ var backpack =
 		showName: "flight magic",
 		name: "flightSpell",
 		itemType: 'ability',
-		price: 100,
+		price: 800,
 		sellable: 0,
-		count: 1,
+		count: 0,
 		execute()
 		{
 			isFly = 1;
@@ -473,9 +473,9 @@ var backpack =
 		showName: "water magic",
 		name: "waterSpell",
 		itemType: 'ability',
-		price: 100,
+		price: 800,
 		sellable: 0,
-		count: 1,
+		count: 0,
 		execute()
 		{
 			isFireResis = 1;
@@ -488,9 +488,9 @@ var backpack =
 		showName: "fire magic",
 		name: "fireSpell",
 		itemType: 'ability',
-		price: 100,
+		price: 800,
 		sellable: 0,
-		count: 1,
+		count: 0,
 		execute()
 		{
 			if(currentRoom == undefined)
@@ -511,9 +511,9 @@ var backpack =
 		showName: "invisible cloak",
 		name: "invisibleCloak",
 		itemType: 'consumable',
-		price: 100,
+		price: 120,
 		sellable: 1,
-		count: 1,
+		count: 0,
 		execute()
 		{
 			if(isInvi != 1 && this.count > 0)
@@ -530,9 +530,9 @@ var backpack =
 		showName: "animated wings",
 		name: "animatedWings",
 		itemType: 'consumable',
-		price: 100,
+		price: 120,
 		sellable: 1,
-		count: 1,
+		count: 0,
 		execute()
 		{
 			if(isFly != 1 && this.count > 0)
@@ -549,9 +549,9 @@ var backpack =
 		showName: "talisman of evasion",
 		name: "evasionTrinket",
 		itemType: 'addon',
-		price: 100,
+		price: 300,
 		sellable: 1,
-		count: 1,
+		count: 0,
 		gain: 15,
 		execute()
 		{
@@ -569,9 +569,9 @@ var backpack =
 		showName: "power ring of assault",
 		name: "damageTrinket",
 		itemType: 'addon',
-		price: 100,
+		price: 500,
 		sellable: 1,
-		count: 1,
+		count: 0,
 		gain: 25,
 		baseDmg: 0,
 		execute()
@@ -591,9 +591,9 @@ var backpack =
 		showName: "master gemstone of truesight",
 		name: "trapRevealingTrinket",
 		itemType: 'addon',
-		price: 100,
+		price: 800,
 		sellable: 1,
-		count: 1
+		count: 0
 	}
 ]
 

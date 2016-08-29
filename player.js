@@ -55,60 +55,67 @@ function action()
 		return;
 
 	hideAllAction();
-	$('#inspect').slideDown(0);
 
 	//enable item action
-	for(var i = 0; i < backpack.length; i++)
+	if(currentRoom.roomType() != 9)
 	{
-		switch(backpack[i].name)
+		$('#inspect').slideDown(0);
+		for(var i = 0; i < backpack.length; i++)
 		{
-			default: break;
-			case 'arrow': if(backpack[i].count > 0) $('#arrow').slideDown(0); break;
-			case 'torch': if(backpack[i].count > 0) $('#torch').slideDown(0); break;
-			case 'bomb': if(backpack[i].count > 0) $('#bomb').slideDown(0); break;
-			case 'potion1': if(backpack[i].count > 0) $('#potion1').slideDown(0); break;
-			case 'potion2': if(backpack[i].count > 0) $('#potion2').slideDown(0); break;
-			case 'grapplingHook': if(backpack[i].count > 0) $('#grapplingHook').slideDown(0); break;
-			case 'fireResistantCloak': if(backpack[i].count > 0) $('#fireResistantCloak').slideDown(0); break;
-			case 'shield': if(backpack[i].count > 0) $('#shield').slideDown(0); break;
-			case 'springLoadedBoots': if(backpack[i].count > 0) $('#springLoadedBoots').slideDown(0); break;
-			case 'flightSpell': if(backpack[i].count > 0) $('#flightSpell').slideDown(0); break;
-			case 'waterSpell': if(backpack[i].count > 0) $('#waterSpell').slideDown(0); break;
-			case 'fireSpell': if(backpack[i].count > 0) $('#fireSpell').slideDown(0); break;
-			case 'invisibleCloak': if(backpack[i].count > 0) $('#invisibleCloak').slideDown(0); break;
-			case 'animatedWings': if(backpack[i].count > 0) $('#animatedWings').slideDown(0); break;
+			switch(backpack[i].name)
+			{
+				default: break;
+				case 'arrow': if(backpack[i].count > 0) $('#arrow').slideDown(0); break;
+				case 'torch': if(backpack[i].count > 0) $('#torch').slideDown(0); break;
+				case 'bomb': if(backpack[i].count > 0) $('#bomb').slideDown(0); break;
+				case 'potion1': if(backpack[i].count > 0) $('#potion1').slideDown(0); break;
+				case 'potion2': if(backpack[i].count > 0) $('#potion2').slideDown(0); break;
+				case 'grapplingHook': if(backpack[i].count > 0) $('#grapplingHook').slideDown(0); break;
+				case 'fireResistantCloak': if(backpack[i].count > 0) $('#fireResistantCloak').slideDown(0); break;
+				case 'shield': if(backpack[i].count > 0) $('#shield').slideDown(0); break;
+				case 'springLoadedBoots': if(backpack[i].count > 0) $('#springLoadedBoots').slideDown(0); break;
+				case 'flightSpell': if(backpack[i].count > 0) $('#flightSpell').slideDown(0); break;
+				case 'waterSpell': if(backpack[i].count > 0) $('#waterSpell').slideDown(0); break;
+				case 'fireSpell': if(backpack[i].count > 0) $('#fireSpell').slideDown(0); break;
+				case 'invisibleCloak': if(backpack[i].count > 0) $('#invisibleCloak').slideDown(0); break;
+				case 'animatedWings': if(backpack[i].count > 0) $('#animatedWings').slideDown(0); break;
+			}
 		}
-	}
 
-	switch(currentRoom.roomType())
+		switch(currentRoom.roomType())
+		{
+			/*room type:
+				empty 	10 	0
+				shop	5 	1
+				secret 	5 	2
+				chest 	10 	3
+				riddle 	10 	4
+				gamble 	10 	5
+				monster 34 	6
+				trap 	15 	7
+				boss 	1 	8
+			*/
+			default: break;
+			case 0: //empty
+			case 2: //secret
+				if(currentRoom.roomContent.hasLight == 0)
+					$('#blindWalk').slideDown(0);
+				break;
+			case 1: $('#openShop').slideDown(0); break;
+			case 3:
+				if(currentRoom.roomContent.open == 0) 
+					$('#openChest').slideDown(0);
+				break;
+			case 4: $('#openRiddle').slideDown(0); break;
+			case 5: $('#openGamble').slideDown(0); break;
+			case 6: $('#melee').slideDown(0); break;
+			case 7: break; //trap
+			case 8: $('#melee').slideDown(0); break;
+		}	
+	}
+	else
 	{
-		/*room type:
-			empty 	10 	0
-			shop	5 	1
-			secret 	5 	2
-			chest 	10 	3
-			riddle 	10 	4
-			gamble 	10 	5
-			monster 34 	6
-			trap 	15 	7
-			boss 	1 	8
-		*/
-		default: break;
-		case 0: //empty
-		case 2: //secret
-			if(currentRoom.roomContent.hasLight == 0)
-				$('#blindWalk').slideDown(0);
-			break;
-		case 1: $('#openShop').slideDown(0); break;
-		case 3:
-			if(currentRoom.roomContent.open == 0) 
-				$('#openChest').slideDown(0);
-			break;
-		case 4: $('#openRiddle').slideDown(0); break;
-		case 5: $('#openGamble').slideDown(0); break;
-		case 6: $('#melee').slideDown(0); break;
-		case 7: break; //trap
-		case 8: $('#melee').slideDown(0); break;
+		$('#rescuePrincess').slideDown(0);
 	}
 
 	updateHeroInfo(); //can be found in init.js
@@ -152,19 +159,30 @@ function blinkWalk()
 	{
 		if(checkSuccessRate(60)) //theres a 60% chance you get out in random available direction
 		{
+			$('#outputInfo').append("You trace your way in the dark and you find a door leading to another room.\n");
 			goInDirection(possiblePath[getRandomInt(0, possiblePath.length-1)]);
 			return;
 		}
 
 		if(checkSuccessRate(50)) //theres 20% chance you didnt find your way
+		{
+			$('#outputInfo').append("You search and search in the dark but you do not find any way out.\n");
 			return;
+		}
 		else //theres 20% chance you hurt urself tripping on rock
+		{
+			$('#outputInfo').append("You trips on something and falls over. Something seems to pierce through your body.\n");
+			$('#outputInfo').append("You lose 5 HP\n");
 			HP -= 5;
+			if(HP <= 0)
+				endGame(0);
+		}
 	}
 	else
 	{
 		if(checkSuccessRate(80))
 		{
+			$('#outputInfo').append("You trace your way in the dark and you find a door leading to another room.\n");
 			goInDirection(possiblePath[getRandomInt(0, possiblePath.length-1)]);
 			return;
 		}

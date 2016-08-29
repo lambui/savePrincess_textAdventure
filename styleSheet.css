@@ -4,14 +4,162 @@ html, body
 	margin: 0;
 	border: 0;
     padding: 0;
+    margin-top: 1%;
     width: 100%;
-    height: 100%;
+    height: 90%;
 }
 
 *
 {
 	font-family: "Consolas";
 }
+
+.gameInfo
+{
+	position: fixed;
+	bottom: 1%;
+	right: 1%;
+}
+
+.intro
+{
+	position: absolute;
+	background-color: white;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	visibility: visible;
+}
+
+	.intro #devNote
+	{
+		position: absolute;
+		right: 0%;
+		top: 10%;
+		width: 20%;
+		padding: 1%;
+		border: dashed;
+		border-radius: 10px;
+	}
+
+	.intro .inner
+	{
+		position: absolute;
+		width: 40%;
+		height: 80%;
+		left: 30%;
+		top: 10%;
+		border-style: solid;
+		border-radius: 10px;
+		padding: 5px;
+		background-color: white;
+	}
+
+	.intro .inner #name
+	{
+		float: left;
+		margin-top: -4.5%;
+		margin-left: 35%;
+		margin-right: 35%;
+		width: 30%;
+		background-color: white;
+		border-radius: 5px;
+		font-size: 30px;
+		text-align: center;
+	}
+
+	.intro .inner #introContent
+	{
+		float: left;
+		margin-left: 5%;
+		margin-right: 5%;
+		margin-top: 3%;
+	}
+
+	#introContent #inputHeroName
+	{
+		float: left;
+		width: 60%;
+		margin-left: 20%;
+		margin-right: 20%;
+		margin-bottom: 5%;
+	}
+
+	#introContent .introPara
+	{
+		width: 100%;
+		margin-bottom: 5%;
+	}
+		.introPara p
+		{
+			margin: 0;
+			padding: 0;
+			border: 0;
+			margin-bottom: 2%;
+		}
+
+		#beginIntro
+		{
+			text-align: center;
+			margin-bottom: 2%;
+		}
+
+		#endIntro
+		{
+			text-align: center;
+			font-weight: bold;
+		}
+
+	#introContent .chooseDif
+	{
+		width: 100%;
+		margin-bottom: 5%;
+	}
+
+		.chooseDif .wrapper
+		{
+			float: left;
+			margin-left: 2%;
+			margin-right: 2%;
+			margin-bottom: 5%;
+			width: 46%;
+		}
+
+			.chooseDif .wrapper textarea
+			{
+				width: 96%;
+				padding: 2%;
+				border: none;
+				border-radius: 10px;
+			    overflow: visible;
+			    outline: none;
+
+			    -webkit-box-shadow: none;
+			    -moz-box-shadow: none;
+			    box-shadow: none;
+			    resize: none;
+			}
+
+				.chooseDif .wrapper textarea:hover
+				{
+					-webkit-box-shadow: 0px 0px 70px 0px rgba(28,197,219,0.5);
+					-moz-box-shadow: 0px 0px 70px 0px rgba(28,197,219,0.5);
+					box-shadow: 0px 0px 70px 0px rgba(28,197,219,0.5);				
+				}
+
+			.chooseDif .wrapper button
+			{
+				width: 100%;
+				font-size: 1.3em;
+			}
+
+	#introContent #infoBox
+	{
+		width: 100%;
+		resize: none;
+	}
 
 .playerInfo
 {
@@ -533,4 +681,79 @@ html, body
 		width: 20%;
 		margin-right: 5%;
 		border-radius: 5px;
+	}
+
+.end
+{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	visibility: hidden;
+}
+
+	.end .inner
+	{
+		position: absolute;
+		width: 40%;
+		height: 80%;
+		left: 30%;
+		top: 10%;
+		border-style: solid;
+		border-radius: 10px;
+		padding: 5px;
+		background-color: white;
+	}
+
+	.end .inner #name
+	{
+		float: left;
+		margin-top: -4.5%;
+		margin-left: 35%;
+		margin-right: 35%;
+		width: 30%;
+		background-color: white;
+		border-radius: 5px;
+		font-size: 30px;
+		text-align: center;
+	}
+
+	.end .inner #endArt
+	{
+		float: left;
+		margin-left: 5%;
+		margin-right: 5%;
+		margin-top: 5%;
+		margin-bottom: 5%;
+		width: 90%;
+
+		border: none;
+		border-radius: 10px;
+	    overflow: visible;
+	    outline: none;
+
+	    -webkit-box-shadow: none;
+	    -moz-box-shadow: none;
+	    box-shadow: none;
+	    resize: none;
+	}
+
+	.end .inner #endInfoBox
+	{
+		float: left;
+		margin-left: 5%;
+		margin-right: 5%;
+		margin-bottom: 5%;
+		width: 90%;
+	}
+
+	.end .inner #replayButton
+	{
+		border-radius: 10px;
+		font-size: 1.5em;
+		margin-left: 20%;
+		margin-right: 20%;
+		width: 60%;
 	}

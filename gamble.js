@@ -117,7 +117,10 @@ class Gamble
 		}
 
 		if(HP <= 0)
-			aString += "You are dead!\n";
+		{
+			endGame(0);
+			return;
+		}
 
 		$('#outputInfo2').append(aString);
 		this.betGold = 0; $('#betGold').html(this.betGold);

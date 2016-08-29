@@ -55,7 +55,11 @@ class Monster
 		HP -= dmgDealt;
 		aString += "The beast strikes you, doing " + dmgDealt + " dmg. ";
 		if(HP <= 0)
-			return aString + "you are dead.\n";
+		{
+			$('#outputInfo').append(aString + "You are dead!\n");
+			endGame(0);
+			return;
+		}
 		aString += "You have " + HP + " HP left.";
 		aString += "\n";
 		return aString;

@@ -34,6 +34,7 @@ class Room
 			case 6: this.loadMonster(getRandomInt(1,3), getRandomInt(0,1), getRandomInt(0,1)); break;
 			case 7: this.loadTrap(getRandomInt(0,3), getRandomInt(0,1)); break;
 			case 8: this.loadBoss(); break;
+			case 9: this.loadBossDefeated(); break;
 		}
 		return;
 	}
@@ -81,6 +82,11 @@ class Room
 	loadBoss()
 	{
 		this.roomContent = new Boss();
+	}
+
+	loadBossDefeated()
+	{
+		this.roomContent = new BossDefeated();
 	}
 
 	showRoomContent()
@@ -295,6 +301,7 @@ function navigationAction(enterDirection) //string enterDirection
 			canSleep = 0;
 			break;
 		case 8: //boss
+		case 9: //boss defeated
 			canAdvance = 0;
 			canSleep = 0;
 			canRun = 0;
@@ -488,7 +495,12 @@ function drawMap()
 						case 4: draw += "R"; break;
 						case 5: draw += "G"; break;
 						case 6: draw += "M"; break;
-						case 7: draw += "T"; break;
+						case 7: 
+							if(map[i][j].roomContent.visible) 
+								draw += "T";
+							else
+								draw += " ";
+							break;
 						case 8: draw += "B"; break;
 						default: draw += " "; break;
 					}
