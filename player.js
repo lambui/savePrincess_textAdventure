@@ -126,8 +126,26 @@ function inspect()
 	showDescription();
 
 	if(currentRoom.roomType() == 2) //secret
+	{
 		if(currentRoom.roomContent.type == 2) //if its nothing room
+		{
 			currentRoom.roomContent.action();
+			return;
+		}
+	}
+
+	if(currentRoom.roomType() == 7) //trap
+	{
+		if(checkSuccessRate(25))
+		{
+			currentRoom.roomContent.visible = 1;
+			$('#outputInfo').append(currentRoom.roomContent.info());
+			updateHeroInfo();
+			updateNavigation();
+			return;
+		}
+	}
+	$('#outputInfo').append("You inspect the room but find nothing out of place.\n");
 }
 
 function blinkWalk()
