@@ -542,6 +542,7 @@ function drawMap()
 			}
 			draw += "\n | C A S T L E  M A P\n\n";
 			draw += "   ●: your character\n";
+			draw += "   ?: unvisited room\n";
 			draw += "   ■: dark room\n";
 			draw += "   B: boss\n";
 			draw += "   C: chest\n";

@@ -1,7 +1,7 @@
+Thank the developer(s)? of 'a dark room' game for inspiration. You can visit it here: http://adarkroom.doublespeakgames.com/
+
+Also here are links to some of the ASCII art used ingame:
 http://www.ascii-code.com/ascii-art/holiday-and-events/fireworks.php
-by Joan Stark 
-
-
                                    .''.       
        .''.      .        *''*    :_\/_:     . 
       :_\/_:   _\(/_  .:.*_\/_*   : /\ :  .'.:.'.
@@ -11,11 +11,7 @@ by Joan Stark
   '..'  ':::'     * /\ *     .'/.\'.   '
       *            *..*         :
 
-C O N G R A T - P R I N C E S S   IS   S A V E D !!!
-
-
 http://www.ascii-art.de/ascii/s/skull.txt
-
      _.--""--._
     /  _    _  \
  _  ( (_\  /_) )  _
@@ -24,25 +20,3 @@ http://www.ascii-art.de/ascii/s/skull.txt
  _  _.=("""")=._  _
 (_'"_.-"`~~`"-._"'_)
  {_"            "_}
-
-aString += '                                   .\'\'.       \n';
-aString += '       .\'\'.      .        *\'\'*    :_\\/_:     . \n';
-aString += '      :_\\/_:   _\\(/_  .:.*_\\/_*   : /\\ :  .\'.:.\'.\n';
-aString += '  .\'\'.: /\\ :   ./)\\   \':\'* /\\ * :  \'..\'.  -=:o:=-\n';
-aString += ' :_\\/_:\'.:::.    \' *\'\'*    * \'.\\\'/.\' _\\(/_\'.\':\'.\'\n';
-aString += ' : /\\ : :::::     *_\\/_*     -= o =-  /)\\    \'  *\n';
-aString += '  \'..\'  \':::\'     * /\\ *     .\'/.\\\'.   \'\n';
-aString += '      *            *..*         :\n';
-aString += '\n';
-aString += 'C O N G R A T - P R I N C E S S   IS   S A V E D !!!\n';
-
-aString += '                _.--""--._\n';
-aString += '               /  _    _  \\\n';
-aString += '            _  ( (_\  /_) )  _\n';
-aString += '           { \\._\\   /\\   /_./ }\n';
-aString += '           /_"=-.}______{.-="_\\\n';
-aString += '            _  _.=("""")=._  _\n';
-aString += '           (_\'"_.-"`~~`"-._"\'_)\n';
-aString += '            {_"            "_}\n';
-aString += '\n';
-aString += '          Y O U   A R E   D E A D!\n';
