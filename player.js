@@ -177,8 +177,8 @@ function blinkWalk()
 	{
 		if(checkSuccessRate(60)) //theres a 60% chance you get out in random available direction
 		{
-			$('#outputInfo').append("You trace your way in the dark and you find a door leading to another room.\n");
 			goInDirection(possiblePath[getRandomInt(0, possiblePath.length-1)]);
+			$('#outputInfo').append("You just realize you have traced your way in the dark and found a door leading to another room.\n");
 			return;
 		}
 
@@ -192,6 +192,7 @@ function blinkWalk()
 			$('#outputInfo').append("You trips on something and falls over. Something seems to pierce through your body.\n");
 			$('#outputInfo').append("You lose 5 HP\n");
 			HP -= 5;
+			updateHeroInfo();
 			if(HP <= 0)
 				endGame(0);
 		}
@@ -200,8 +201,8 @@ function blinkWalk()
 	{
 		if(checkSuccessRate(80))
 		{
-			$('#outputInfo').append("You trace your way in the dark and you find a door leading to another room.\n");
 			goInDirection(possiblePath[getRandomInt(0, possiblePath.length-1)]);
+			$('#outputInfo').append("You just realize you have traced your way in the dark and found a door leading to another room.\n");
 			return;
 		}
 	}
@@ -231,6 +232,8 @@ function openRiddle()
 function openGamble()
 {
 	$($('.gambleTable')[0]).css('visibility', 'visible');
+	$('#outputInfo2').text("Heheheh. Would you like to play a tittle game with me? I will get out of the way if you play with me. Hehehe. If you win you will get rewarded handsomely.\n");
+	$('#outputInfo2').append("Place down your bet if you want to play. Hehehe...\n");
 	currentRoom.roomContent.action();
 }
 
