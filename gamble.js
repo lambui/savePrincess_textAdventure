@@ -273,7 +273,7 @@ function getCupString(type, cupNumber)
 		case 1: //correct cup
 			aString = "  /`.______.'\\\n";
 			aString += " /            \\\n";
-			aString += "/      (" + cupNumber + ")    \\\n";
+			aString += "/      (" + cupNumber + ")     \\\n";
 			aString += "`-..________..-'\n";
 			aString += "      ▲--▲\n";
 			aString += "     (*  *)\n";

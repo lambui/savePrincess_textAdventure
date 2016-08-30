@@ -96,12 +96,12 @@ class Riddle
 			if(checkSuccessRate(30)) //there a 30% on it changes the maze
 			{
 				reshuffleMaze();
+				drawMap();
 			}
+			updateHeroInfo();
 		}
 
 		this.playOnce = 1;
-		updateNavigation();
-		updateHeroInfo();
 	}
 
 	info()

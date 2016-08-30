@@ -295,7 +295,7 @@ function melee()
 		var theBoss = currentRoom.roomContent;
 		if(theBoss.invi == 1)
 		{
-			if(backpack[21].count == 1)
+			if(backpack[21].count > 0)
 			{
 				aString += "The demon trace has all vanished. But the heat goggles allow you to clearly see him. You suddendly swings your sword at him. Caught by surprise the demon howls in pain.\n";
 				dmgDealt = Math.floor(dmgDealt*1.1);
@@ -401,7 +401,7 @@ function shootArrow()
 		var theBoss = currentRoom.roomContent;
 		if(theBoss.invi == 1)
 		{
-			if(backpack[21].count == 1)
+			if(backpack[21].count > 0)
 			{
 				aString += "The demon trace has all vanished. But the heat goggles allow you to spot him. You precisely let your arrow fly. The arrow struck him square in the chest.\n";
 				dmgDealt = Math.floor(dmgDealt*1.1);
@@ -555,7 +555,6 @@ function useItem(itemName) //itemName == 'name' property of objects in backpack 
 	}
 
 	item.execute();
-	$("#outputInfo").append(isFly + " " + isBlock + " " + isFireResis + " " + isJump + "\n");
 
 	//if its secret room
 	if(currentRoom.roomType() == 2 && (itemName == 'torch' || itemName == 'fireSpell'))
@@ -566,10 +565,14 @@ function useItem(itemName) //itemName == 'name' property of objects in backpack 
 	if(currentRoom.roomType() == 6 && checkSuccessRate(50))
 		$("#outputInfo").append(currentRoom.roomContent.action());
 
+	//if boss room
+	if(currentRoom.roomType() == 8 && checkSuccessRate(75))
+		$("#outputInfo").append(currentRoom.roomContent.action());
+
 	action();
 	updateHeroInfo();
 	updateNavigation(); //can be found in map.js
-	showDescription(); //can be found in map.js
+	$("#outputInfo").append(currentRoom.roomContent.info());
 }
 
 function rest()

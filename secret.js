@@ -56,7 +56,7 @@ class Secret
 			$("#outputInfo").append("You found something emitting strong, divine energy. You reach for it...\n");
 			backpack[this.reward[0]].count += 1;
 		}
-		updateHeroInfo();
+		calculateStat();
 		currentRoom.customRoomType(0);
 		currentRoom.roomContent.hasRock = this.hasRock;
 		currentRoom.roomContent.hasLight = this.hasLight;

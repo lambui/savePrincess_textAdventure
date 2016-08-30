@@ -164,8 +164,9 @@ function assignRandomRoomType()
 		mapArray[i].visit = 0; //unvisit it
 		if(i == 0)
 		{
-			mapArray[i].customRoomType(0);
-			roomTypeCounter[0] += 1;
+			var firstRoomType = 0;
+			mapArray[i].customRoomType(firstRoomType);
+			roomTypeCounter[firstRoomType] += 1;
 			indexCount += 1;
 			continue;
 		}

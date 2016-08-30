@@ -1,6 +1,5 @@
 function updateHeroInfo()
 {
-	calculateStat();
 	var heroInfo = $('.playerInfo').children();
 
 	//hero stat

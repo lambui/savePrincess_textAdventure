@@ -7,17 +7,13 @@ var backpack =
 		showName: "steel dagger",
 		name: "sword1",
 		itemType: 'weapon',
-		price: 250,
+		price: 120,
 		sellable: 1,
 		count: 0,
-		gain: 5,
+		gain: 10,
 		execute()
 		{
-			dmg += this.gain;
-		},
-		remove()
-		{
-			dmg -= this.gain;
+			dmg = d_dmg + this.gain;
 		}
 	},
 	{
@@ -27,17 +23,13 @@ var backpack =
 		showName: "iron sword",
 		name: "sword2",
 		itemType: 'weapon',
-		price: 250,
+		price: 200,
 		sellable: 1,
 		count: 0,
-		gain: 5,
+		gain: 15,
 		execute()
 		{
-			dmg += this.gain;
-		},
-		remove()
-		{
-			dmg -= this.gain;
+			dmg = d_dmg + this.gain;
 		}
 	},
 	{
@@ -47,17 +39,13 @@ var backpack =
 		showName: "steel sword",
 		name: "sword3",
 		itemType: 'weapon',
-		price: 250,
+		price: 320,
 		sellable: 1,
 		count: 0,
-		gain: 5,
+		gain: 22,
 		execute()
 		{
-			dmg += this.gain;
-		},
-		remove()
-		{
-			dmg -= this.gain;
+			dmg = d_dmg + this.gain;
 		}
 	},
 	{
@@ -67,17 +55,13 @@ var backpack =
 		showName: "steel broad sword",
 		name: "sword4",
 		itemType: 'weapon',
-		price: 250,
+		price: 400,
 		sellable: 1,
 		count: 0,
-		gain: 5,
+		gain: 31,
 		execute()
 		{
-			dmg += this.gain;
-		},
-		remove()
-		{
-			dmg -= this.gain;
+			dmg = d_dmg + this.gain;
 		}
 	},
 	{
@@ -87,17 +71,13 @@ var backpack =
 		showName: "diamond-edge sword",
 		name: "sword5",
 		itemType: 'weapon',
-		price: 250,
+		price: 550,
 		sellable: 1,
 		count: 0,
-		gain: 5,
+		gain: 42,
 		execute()
 		{
-			dmg += this.gain;
-		},
-		remove()
-		{
-			dmg -= this.gain;
+			dmg = d_dmg + this.gain;
 		}
 	},
 	{
@@ -110,14 +90,10 @@ var backpack =
 		price: 1000,
 		sellable: 1,
 		count: 0,
-		gain: 20,
+		gain: 60,
 		execute()
 		{
-			dmg += this.gain;
-		},
-		remove()
-		{
-			dmg -= this.gain;
+			dmg = d_dmg + this.gain;
 		}
 	},
 	{
@@ -127,22 +103,13 @@ var backpack =
 		showName: "leather tunic",
 		name: "armor1",
 		itemType: 'armor',
-		price: 200,
+		price: 120,
 		sellable: 1,
 		count: 0,
 		gain: 10,
 		execute()
 		{
-			maxHP += this.gain;
-			HP += this.gain;
-		},
-		remove()
-		{
-			maxHP -= this.gain;
-			if(HP < this.gain)
-				HP = 1;
-			else
-				HP -= this.gain;
+			maxHP = d_maxHP + this.gain;
 		}
 	},
 	{
@@ -152,22 +119,13 @@ var backpack =
 		showName: "iron chain mail",
 		name: "armor2",
 		itemType: 'armor',
-		price: 200,
+		price: 250,
 		sellable: 1,
 		count: 0,
-		gain: 10,
+		gain: 20,
 		execute()
 		{
-			maxHP += this.gain;
-			HP += this.gain;
-		},
-		remove()
-		{
-			maxHP -= this.gain;
-			if(HP < this.gain)
-				HP = 1;
-			else
-				HP -= this.gain;
+			maxHP = d_maxHP + this.gain;
 		}
 	},
 	{
@@ -177,22 +135,13 @@ var backpack =
 		showName: "steel chain mail",
 		name: "armor3",
 		itemType: 'armor',
-		price: 200,
+		price: 400,
 		sellable: 1,
 		count: 0,
-		gain: 10,
+		gain: 35,
 		execute()
 		{
-			maxHP += this.gain;
-			HP += this.gain;
-		},
-		remove()
-		{
-			maxHP -= this.gain;
-			if(HP < this.gain)
-				HP = 1;
-			else
-				HP -= this.gain;
+			maxHP = d_maxHP + this.gain;
 		}
 	},
 	{
@@ -202,22 +151,13 @@ var backpack =
 		showName: "plate mail",
 		name: "armor4",
 		itemType: 'armor',
-		price: 200,
+		price: 580,
 		sellable: 1,
 		count: 0,
-		gain: 10,
+		gain: 50,
 		execute()
 		{
-			maxHP += this.gain;
-			HP += this.gain;
-		},
-		remove()
-		{
-			maxHP -= this.gain;
-			if(HP < this.gain)
-				HP = 1;
-			else
-				HP -= this.gain;
+			maxHP = d_maxHP + this.gain;
 		}
 	},
 	{
@@ -227,22 +167,13 @@ var backpack =
 		showName: "dragon-scale plate mail",
 		name: "armor5",
 		itemType: 'armor',
-		price: 200,
+		price: 730,
 		sellable: 1,
 		count: 0,
-		gain: 10,
+		gain: 65,
 		execute()
 		{
-			maxHP += this.gain;
-			HP += this.gain;
-		},
-		remove()
-		{
-			maxHP -= this.gain;
-			if(HP < this.gain)
-				HP = 1;
-			else
-				HP -= this.gain;
+			maxHP = d_maxHP + this.gain;
 		}
 	},
 	{
@@ -255,19 +186,10 @@ var backpack =
 		price: 1000,
 		sellable: 1,
 		count: 0,
-		gain: 30,
+		gain: 90,
 		execute()
 		{
-			maxHP += this.gain;
-			HP += this.gain;
-		},
-		remove()
-		{
-			maxHP -= this.gain;
-			if(HP < this.gain)
-				HP = 1;
-			else
-				HP -= this.gain;
+			maxHP = d_maxHP + this.gain;
 		}
 	},
 	{
@@ -656,4 +578,6 @@ function calculateStat()
 		HP = currentHP;
 	if(HP > maxHP)
 		HP = maxHP;
+
+	updateHeroInfo();
 }

@@ -20,7 +20,11 @@ class Monster
 		this.alive = true;
 		this.gold = hardness*getRandomInt(0,100);
 		this.reward = getRandomInt(0, backpack.length-1);
-		this.count = hardness*getRandomInt(1,3);
+		this.count = Math.floor(hardness*Math.random());
+		if(this.reward == 5 || this.reward == 11)
+			this.reward = getRandomInt(0, backpack.length-1);
+		if(this.reward == 5 || this.reward == 11)
+			this.count = 1;
 	}
 
 	checkPlayer(){}
@@ -40,7 +44,7 @@ class Monster
 			currentRoom.roomContent.hasLight = 1;
 
 			updateNavigation();
-			updateHeroInfo();
+			calculateStat();
 		}
 		return this.alive;
 	}

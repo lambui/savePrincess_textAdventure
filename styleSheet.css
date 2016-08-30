@@ -21,6 +21,11 @@ html, body
 	right: 1%;
 }
 
+	.gameInfo div
+	{
+		text-align: right;
+	}
+
 .intro
 {
 	position: absolute;
@@ -341,7 +346,21 @@ html, body
 			overflow: auto;
 		}
 
-			#content .itemName
+			#content .itemWrapper
+			{
+				float: left;
+				width: 100%;
+				background-color: lightgray;
+			}
+
+				#content .itemWrapper:nth-child(odd)
+				{
+					float: left;
+					width: 100%;
+					background-color: white;
+				}
+
+			#content .itemWrapper .itemName
 			{
 				float: left;
 				margin-left: 5%;
@@ -353,16 +372,21 @@ html, body
 				text-align: left;
 			}
 
-			#content .itemPrice
+			#content .itemWrapper .itemPrice
 			{
 				float: right;
 				margin-right: 3%;
 				width: 10%;
 				font-size: 15px;
 				text-align: right;
+				background-color: black;
+				padding-left: 1%;
+				padding-right: 1%;
+				border-radius: 5px;
+				color: gold;
 			}
 
-			#content button
+			#content .itemWrapper button
 			{
 				float: right;
 				width: 10%;

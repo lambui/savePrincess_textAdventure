@@ -131,7 +131,7 @@ class Chest
 		}
 
 		$('#outputInfo').append("You take everything from the chest.\n");
-		updateHeroInfo();
+		calculateStat();
 		return "You take everything from the chest.\n";
 	}
 

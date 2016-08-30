@@ -51,6 +51,7 @@ class Shop
 		for(var i = 0; i < this.wareArray.length; i++)
 		{
 			//create div that display item name
+			var allAppend = "<div class='itemWrapper'>";
 			var appendName = "<div class='itemName'>";
 
 			if(backpack[this.wareArray[i]].itemType == 'ability') //special case for spell
@@ -90,11 +91,10 @@ class Shop
 			appendPrice += backpack[this.wareArray[i]].price + "g.";
 			appendPrice += "</div>";
 
-			$('.shop .inner #content').append(appendName);
-			$('.shop .inner #content').append(appendSell);
-			$('.shop .inner #content').append(appendBuy);
-			$('.shop .inner #content').append(appendPrice);
+			//add wrapper
+			allAppend += (appendName + appendSell + appendBuy + appendPrice + "</div>");
 
+			$('.shop .inner #content').append(allAppend);
 		}
 
 		$('.shop .inner #content').append("<div id='sellingItem'>Backpack:</div>");
@@ -102,6 +102,8 @@ class Shop
 		{
 			if(backpack[i].itemType == 'ability' || backpack[i].count <= 0)
 				continue;
+
+			allAppend = "<div class='itemWrapper'>";
 
 			//create div that display item name
 			var appendName = "<div class='itemName'>";
@@ -113,8 +115,9 @@ class Shop
 			appendSell += "<button class='sellButton' ";
 			appendSell += "onClick='sellItem(" + i + ")'>sell</button>";
 
-			$('.shop .inner #content').append(appendName);
-			$('.shop .inner #content').append(appendSell);
+			allAppend += (appendName + appendSell + "</div>");
+
+			$('.shop .inner #content').append(allAppend);
 		}
 	}
 
