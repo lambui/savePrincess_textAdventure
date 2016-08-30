@@ -656,6 +656,4 @@ function calculateStat()
 		HP = currentHP;
 	if(HP > maxHP)
 		HP = maxHP;
-
-	updateHeroInfo(); //function can be found in init.js
 }

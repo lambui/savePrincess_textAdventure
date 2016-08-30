@@ -185,7 +185,6 @@ function blinkWalk()
 		if(checkSuccessRate(50)) //theres 20% chance you didnt find your way
 		{
 			$('#outputInfo').append("You search and search in the dark but you do not find any way out.\n");
-			return;
 		}
 		else //theres 20% chance you hurt urself tripping on rock
 		{
@@ -203,7 +202,10 @@ function blinkWalk()
 		{
 			goInDirection(possiblePath[getRandomInt(0, possiblePath.length-1)]);
 			$('#outputInfo').append("You just realize you have traced your way in the dark and found a door leading to another room.\n");
-			return;
+		}
+		else
+		{
+			$('#outputInfo').append("You search and search in the dark but you do not find any way out.\n");
 		}
 	}
 }
@@ -293,8 +295,16 @@ function melee()
 		var theBoss = currentRoom.roomContent;
 		if(theBoss.invi == 1)
 		{
-			aString += "The demon trace has all vanished. You swings your sword blindly in the air but to no avail. None of your swings connects.\n";
-			dmgDealt = 0;
+			if(backpack[21].count == 1)
+			{
+				aString += "The demon trace has all vanished. But the heat goggles allow you to clearly see him. You suddendly swings your sword at him. Caught by surprise the demon howls in pain.\n";
+				dmgDealt = Math.floor(dmgDealt*1.1);
+			}
+			else
+			{
+				aString += "The demon trace has all vanished. You swings your sword blindly in the air but to no avail. None of your swings connects.\n";
+				dmgDealt = 0;
+			}
 		}
 
 		if(theBoss.fly == 1)
@@ -391,8 +401,16 @@ function shootArrow()
 		var theBoss = currentRoom.roomContent;
 		if(theBoss.invi == 1)
 		{
-			aString += "The demon trace has all vanished. You fires your arrow blindly to open spaces to no avail. None of arrows seems to hit anything.\n";
-			dmgDealt = 0;
+			if(backpack[21].count == 1)
+			{
+				aString += "The demon trace has all vanished. But the heat goggles allow you to spot him. You precisely let your arrow fly. The arrow struck him square in the chest.\n";
+				dmgDealt = Math.floor(dmgDealt*1.1);
+			}
+			else
+			{
+				aString += "The demon trace has all vanished. You fires your arrow blindly to open spaces to no avail. None of arrows seems to hit anything.\n";
+				dmgDealt = 0;
+			}
 		}
 
 		if(theBoss.evasion > getRandomInt(0,99))
